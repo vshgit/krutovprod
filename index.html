@@ -259,7 +259,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
       </div>
     </div>
     <div class="film">
-      <div class="poster syn"></div>
+      <div class="poster syn" id="synposter"></div>
       <div>
         <h3 data-i="f2_h">Syndrome</h3>
         <p class="meta" data-i="f2_m">Mystery thriller, 2022.</p>
@@ -313,7 +313,8 @@ const CONFIG = {
   film_poster: "https://cdnrrviubnyuntopbez5.svc.cdn.yandex.net/get-kinopoisk-image/10812607/1df120b9-9ebd-4735-a7b7-efa8e028c7f4/orig",
   syn_trailer: "youtube:VN2jBJQ-BWI",
   ny_full: "https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/20e39b45-253f-403e-a9d8-7244bca8047f.mp4",
-  syn_kp: "https://www.kinopoisk.ru/film/1431128/"
+  syn_kp: "https://www.kinopoisk.ru/film/1431128/",
+  syn_poster: "https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/eded6ed3-c9cd-4e29-aa40-7f6f55c7129b/x1000"
 };
 const WORKS = [
   {zone:"ads", kind:"ai", en:"Pippin", ru:"Pippin", den:"Commercial for a fictional garden-hose brand", dru:"Реклама для вымышленного бренда садовых шлангов", video:"vimeo:1180061445"},
@@ -444,6 +445,7 @@ document.querySelectorAll("[data-play]").forEach(b=>{
 document.getElementById("nyvid").onclick=()=>openVideo(CONFIG.ny_full,L("New Year film","Новогодний ролик"),true);
 document.querySelectorAll("[data-demo]").forEach(b=>b.onclick=()=>openVideo(b.dataset.demo,b.querySelector("b").textContent,true));
 if(CONFIG.film_poster) document.getElementById("poster").style.backgroundImage=`url(${CONFIG.film_poster})`;
+if(CONFIG.syn_poster) document.getElementById("synposter").style.background=`#1a1012 url(${CONFIG.syn_poster}) center/cover`;
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){
   document.querySelectorAll(".zones a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id));
