@@ -196,7 +196,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
     <a href="#ads"><b data-i="z_ads">Commercials</b><span data-i="z_ads_s">Product and brand films, mostly made with AI</span></a>
     <a href="#holiday" class="season"><b data-i="z_hol">New Year</b><span data-i="z_hol_s">Corporate greetings and interactive cards</span></a>
     <a href="#music"><b data-i="z_mus">Music videos</b><span data-i="z_mus_s">Live action, AI or both</span></a>
-    <a href="#cinema"><b data-i="z_cin">Film</b><span data-i="z_cin_s">Features, shorts, trailers</span></a>
+    <a href="#cinema"><b data-i="z_cin">Film</b><span data-i="z_cin_s">Features, AI films, shorts</span></a>
   </div>
 </section>
 
@@ -240,7 +240,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
 
 <section class="zone" id="cinema">
   <div class="zhead">
-    <div><h2 data-i="z_cin">Film</h2><p data-i="cin_p">Where we come from. Two features in Russian distribution and a handful of shorts.</p></div>
+    <div><h2 data-i="z_cin">Film</h2><p data-i="cin_p">Where we come from: two features in Russian distribution, AI films and shorts.</p></div>
   </div>
   <div class="features">
     <div class="film">
@@ -262,6 +262,8 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
       </div>
     </div>
   </div>
+  <p class="sub" data-i="aif_h">AI films and trailers</p>
+  <div class="zbody wide" data-zone="aifilms" style="margin-bottom:32px"></div>
   <p class="sub" data-i="shorts_h">Short films</p>
   <div class="zbody wide" data-zone="shorts"></div>
 </section>
@@ -307,13 +309,14 @@ const CONFIG = {
   syn_kp: "https://www.kinopoisk.ru/film/1431128/"
 };
 const WORKS = [
+  {zone:"ads", kind:"ai", en:"Pippin", ru:"Pippin", den:"Commercial for a fictional garden-hose brand", dru:"Реклама для вымышленного бренда садовых шлангов", video:"vimeo:1180061445"},
   {zone:"ads", kind:"ai", en:"Tom Ford", ru:"Tom Ford", den:"Spec commercial", dru:"Спек-реклама", video:"youtube:Nt9WNHWFKZ8"},
   {zone:"ads", kind:"ai", en:"BeFree", ru:"BeFree", den:"Spec commercial", dru:"Спек-реклама", video:"youtube:cqMoQ9QGIc0"},
   {zone:"ads", kind:"live", en:"Lawyer Club", ru:"Lawyer Club", den:"Commercial", dru:"Реклама", video:""},
   {zone:"ads", kind:"live", en:"Allenberg", ru:"Алленберг", den:"Series about a 19th-century asylum", dru:"Серия роликов о психбольнице XIX века", video:""},
-  {zone:"ads", kind:"ai", en:"Natural Intelligence", ru:"Естественный интеллект", den:"Trailer for a film that doesn't exist", dru:"Трейлер несуществующего фильма", video:""},
-  {zone:"ads", kind:"ai", en:"Pippin garden hose", ru:"Садовый шланг Pippin", den:"Runway Big Ad Contest entry", dru:"Для конкурса Runway Big Ad Contest", video:""},
-  {zone:"ads", kind:"ai", en:"Cosmo Café", ru:"Космо-Кафе", den:"Animated short", dru:"Мультфильм", video:""},
+  {zone:"aifilms", kind:"ai", en:"Natural Intelligence", ru:"Естественный интеллект", den:"Trailer for a film that doesn't exist", dru:"Трейлер несуществующего фильма", video:"vimeo:1180073199"},
+  {zone:"aifilms", kind:"ai", en:"Cosmo Café", ru:"Космо-Кафе", den:"Animated short, idea to final cut", dru:"Мультфильм от идеи до финала", video:"vimeo:1180079665"},
+  {zone:"aifilms", kind:"ai", en:"The Girl in the Silent House", ru:"Девушка в тихом доме", den:"Horror scene", dru:"Хоррор-сцена", video:"vimeo:1182213203"},
   {zone:"music", kind:"live", en:"VARYA — Вдохни меня", ru:"VARYA — Вдохни меня", den:"Music video", dru:"Клип", video:"youtube:UsA2cNBQC3g"},
   {zone:"music", kind:"live", en:"Imortelle — Void", ru:"Imortelle — Void", den:"Music video", dru:"Клип", video:"youtube:mNvPCgVb1kw"},
   {zone:"music", kind:"live", en:"Britva Oma — Проблески тебя", ru:"Britva Oma — Проблески тебя", den:"Music video", dru:"Клип", video:"youtube:A1N_RL1pG08"},
@@ -336,7 +339,7 @@ const RU = {
   z_ads:"Реклама", z_ads_s:"Продуктовые и имиджевые ролики, в основном с AI",
   z_hol:"Новый год", z_hol_s:"Корпоративные поздравления и интерактивные открытки",
   z_mus:"Клипы", z_mus_s:"Съёмка, AI или всё вместе",
-  z_cin:"Кино", z_cin_s:"Полный метр, короткий метр, трейлеры",
+  z_cin:"Кино", z_cin_s:"Полный метр, AI-фильмы, короткий метр",
   ads_p:"От сценария до цветокоррекции. С AI имиджевый ролик стоит в разы меньше съёмки и готов за недели, а не месяцы.",
   ads_cta:"Заказать рекламу",
   hol_p:"Два способа поздравить клиентов и команду в этом году. Оба делаем в стиле вашего бренда.",
@@ -346,12 +349,12 @@ const RU = {
   hol2_h:"Интерактивная открытка", hol2_p:"Маленький мир, который можно потрогать прямо в браузере телефона: ваш офис внутри снежного шара, ваш логотип на песке. Нажмите, чтобы попробовать.",
   demo1:"Встряхните телефон", demo2:"Рисуйте пальцем",
   mus_p:"Мы сняли их много: живая съёмка, AI и гибриды. Листайте и выбирайте настроение.", mus_cta:"Заказать клип",
-  cin_p:"Откуда мы пришли. Два полнометражных фильма в российском прокате и несколько короткометражек.",
+  cin_p:"Откуда мы пришли: два полнометражных фильма в российском прокате, AI-фильмы и короткий метр.",
   f1_h:"Дом, в котором люди не живут", f1_m:"Хоррор, 2024. Наш продакшн.",
   f1_r:"<span>Сценарий</span> Дмитрий Крутов. <span>Продюсеры</span> Варвара и Дмитрий Крутовы. <span>Режиссёр</span> Вячеслав Руденко.",
   f2_h:"Синдром", f2_m:"Мистический триллер, 2022.",
   f2_r:"<span>Режиссёр</span> Вячеслав Руденко. <span>Ассистент продюсера и режиссёра</span> Варвара Крутова.",
-  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр",
+  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр", aif_h:"AI-фильмы и трейлеры",
   team_h:"Титры",
   r1:"Сценарист, продюсер", n1:"Дмитрий Крутов", x1:"Пишет сценарии всех наших проектов и общается с каждым клиентом.",
   r2:"Продюсер, AI-режиссёр", n2:"Варвара Крутова", x2:"Превращает сценарии в готовые фильмы с помощью генеративных инструментов. Математик по образованию.",
@@ -376,7 +379,8 @@ function card(w){
   const yt=w.video.startsWith("youtube:")?w.video.slice(8):"";
   const b=document.createElement("button"); b.type="button"; b.className="card";
   const fr=document.createElement("div"); fr.className="frame";
-  const src=w.poster||(yt?`https://i.ytimg.com/vi/${yt}/maxresdefault.jpg`:"");
+  const vm=w.video.startsWith("vimeo:")?w.video.slice(6):"";
+  const src=w.poster||(yt?`https://i.ytimg.com/vi/${yt}/maxresdefault.jpg`:vm?`https://vumbnail.com/${vm}_large.jpg`:"");
   if(src){
     const im=new Image(); im.alt=""; im.loading="lazy"; im.src=src;
     im.onload=()=>{ if(im.naturalWidth<200 && yt && !im.dataset.fb){ im.dataset.fb=1; im.src=`https://i.ytimg.com/vi/${yt}/hqdefault.jpg`; } };
