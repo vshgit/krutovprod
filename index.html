@@ -73,8 +73,10 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 .zbody{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:start}
 .zbody.wide{display:block}
 .feature .frame{aspect-ratio:16/9}
-.row{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--oxblood-2) transparent}
+.row{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--oxblood-2) transparent}
 .row .card{scroll-snap-align:start;flex:0 0 min(300px,72vw)}
+.row .card.tall{flex:0 0 min(190px,44vw)}
+.card.tall .frame{aspect-ratio:9/16}
 .zbody:not(.wide) .row{flex-direction:column;overflow:visible}
 .zbody:not(.wide) .row .card{flex:none;display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
 .zbody:not(.wide) .row .card h3{margin-top:0}
@@ -210,7 +212,9 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
     <div><h2 data-i="z_ai">AI films</h2><p data-i="ai_p">Trailers, animation and scenes made entirely with AI, written and directed like real cinema.</p></div>
     <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ai_cta">Order an AI film</a>
   </div>
-  <div class="zbody" data-zone="aifilms"></div>
+  <div class="zbody wide" data-zone="aifilms"></div>
+  <p class="sub" data-i="vert_h" style="margin-top:28px">Series for social: Allenberg</p>
+  <div class="zbody wide" data-zone="vertical"></div>
 </section>
 
 <section class="zone season" id="holiday">
@@ -328,8 +332,11 @@ const WORKS = [
   {zone:"ads", kind:"ai", en:"Pippin", ru:"Pippin", den:"Commercial for a fictional garden-hose brand", dru:"Реклама для вымышленного бренда садовых шлангов", video:"vimeo:1180061445"},
   {zone:"ads", kind:"ai", en:"Tom Ford", ru:"Tom Ford", den:"Spec commercial", dru:"Спек-реклама", video:"youtube:Nt9WNHWFKZ8"},
   {zone:"ads", kind:"ai", en:"BeFree", ru:"BeFree", den:"Spec commercial", dru:"Спек-реклама", video:"youtube:cqMoQ9QGIc0"},
-  {zone:"ads", kind:"live", en:"Lawyer Club", ru:"Lawyer Club", den:"Commercial", dru:"Реклама", video:""},
-  {zone:"ads", kind:"live", en:"Allenberg", ru:"Алленберг", den:"Series about a 19th-century asylum", dru:"Серия роликов о психбольнице XIX века", video:""},
+  {zone:"ads", kind:"ai", en:"Loyal Club", ru:"Loyal Club", den:"Commercial for a business loyalty service", dru:"Реклама сервиса лояльности для бизнеса", video:"youtube:AzCDA4pJSSE"},
+  {zone:"vertical", kind:"ai", tall:1, en:"Znamensk, the city of a thousand roses", ru:"Знаменск — город тысячи роз", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/305d1482-c0dc-450d-87c6-617eed49bb84.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/1edcb690-bc66-4e4f-a31b-ccfa1af1c8d2.jpg"},
+  {zone:"vertical", kind:"ai", tall:1, en:"The road to Allenberg", ru:"Путь в Алленберг", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/a896456f-e921-48db-83fe-e9690ecd59ca.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/8324f42a-bf38-495c-bf3b-49ffe009c382.jpg"},
+  {zone:"vertical", kind:"ai", tall:1, en:"The stubborn bridge", ru:"«Упрямый» мост", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/eabdfab3-b27d-4618-9d30-7a55b0270f62.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/b3266165-403d-47d6-adbe-943ba1a2aa33.jpg"},
+  {zone:"vertical", kind:"ai", tall:1, en:"Across the east of the region", ru:"Путешествие по востоку области", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/d0a54f21-aadb-49db-b2b0-c44590c987ef.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/469ea079-968e-42b9-998e-1a492d1854bc.jpg"},
   {zone:"aifilms", kind:"ai", en:"Natural Intelligence", ru:"Естественный интеллект", den:"Trailer for a film that doesn't exist", dru:"Трейлер несуществующего фильма", video:"vimeo:1180073199"},
   {zone:"aifilms", kind:"ai", en:"Cosmo Café", ru:"Космо-Кафе", den:"Animated short, idea to final cut", dru:"Мультфильм от идеи до финала", video:"vimeo:1180079665"},
   {zone:"aifilms", kind:"ai", en:"The Girl in the Silent House", ru:"Девушка в тихом доме", den:"Horror scene", dru:"Хоррор-сцена", video:"vimeo:1182213203"},
@@ -370,7 +377,7 @@ const RU = {
   f1_r:"<span>Сценарий</span> Дмитрий Крутов. <span>Продюсеры</span> Варвара и Дмитрий Крутовы. <span>Режиссёр</span> Вячеслав Руденко.",
   f2_h:"Синдром", f2_m:"Мистический триллер, 2022.",
   f2_r:"<span>Режиссёр</span> Вячеслав Руденко. <span>Ассистент продюсера и режиссёра</span> Варвара Крутова.",
-  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр",
+  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр", vert_h:"Серия для соцсетей: Алленберг",
   z_ai:"AI-фильмы", z_ai_s:"Трейлеры, мультфильмы, сцены", ai_p:"Трейлеры, анимация и сцены, целиком сделанные с AI, но написанные и снятые как настоящее кино.", ai_cta:"Заказать AI-фильм",
   team_h:"Титры",
   r1:"Сценарист, продюсер", n1:"Дмитрий Крутов", x1:"Пишет сценарии всех наших проектов и общается с каждым клиентом.",
@@ -407,7 +414,8 @@ function card(w){
   if(w.kind){ const k=document.createElement("span"); k.className="kind "+w.kind; k.textContent=L(...KIND[w.kind]); fr.append(k); }
   const t=document.createElement("div"); t.innerHTML=`<h3>${L(w.en,w.ru)}</h3><p>${L(w.den,w.dru)}</p>`;
   b.append(fr,t);
-  b.onclick=()=>openVideo(w.video,L(w.en,w.ru));
+  if(w.tall) b.classList.add("tall");
+  b.onclick=()=>openVideo(w.video,L(w.en,w.ru),!!w.tall);
   return b;
 }
 function renderZones(){
