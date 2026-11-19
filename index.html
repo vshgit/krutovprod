@@ -134,14 +134,16 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 .channels a:hover b{color:var(--safelight)}
 footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--smoke);font-size:13px;padding-top:44px}
 
-dialog{border:0;background:transparent;width:min(1200px,94vw);margin:auto;padding:0;overflow:visible}
-dialog::backdrop{background:rgba(20,4,5,.94)}
-dialog .vid{aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden}
-dialog.tall{width:min(420px,94vw)}
-dialog.tall .vid{aspect-ratio:9/17;max-height:82vh;margin:0 auto}
-dialog iframe{width:100%;height:100%;border:0}
-dialog .close{position:absolute;top:-46px;right:0;background:none;border:0;color:var(--bone);font:500 15px var(--body);cursor:pointer;padding:10px}
-dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
+dialog{border:0;padding:0;margin:0;position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;background:rgba(20,4,5,.95);overflow:hidden;overscroll-behavior:contain;touch-action:none}
+dialog[open]{display:flex;align-items:center;justify-content:center}
+dialog::backdrop{background:transparent}
+.lbin{width:min(1200px,92vw);touch-action:auto}
+dialog .vid{aspect-ratio:16/9;max-height:80vh;background:#000;border-radius:14px;overflow:hidden;margin:0 auto}
+dialog.tall .lbin{width:auto}
+dialog.tall .vid{aspect-ratio:9/16;height:min(82dvh,150vw);max-height:none}
+dialog iframe,dialog video{width:100%;height:100%;border:0;display:block}
+dialog .close{position:fixed;top:12px;right:12px;z-index:2;background:rgba(239,231,218,.12);border:0;border-radius:999px;color:var(--bone);font:600 15px var(--body);cursor:pointer;padding:10px 16px}
+dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align:center}
 
 @media (max-width:980px){
   .bar .zones{display:none}
@@ -187,7 +189,6 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
     <p class="lede" data-i="lede"><strong>The team behind two feature films.</strong> We make commercials, music videos and holiday films with AI, and pick up a real camera when the story needs it.</p>
     <div class="ctas">
       <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="cta_talk">Discuss a project</a>
-      <a class="btn" href="#ai" data-i="cta_work">See the work</a>
     </div>
   </div>
   <button class="screen" type="button" id="reel" aria-label="Showreel">
@@ -316,8 +317,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
 
 <dialog id="lb">
   <button class="close" type="button" data-i="close">Close</button>
-  <div class="vid"></div>
-  <h3></h3>
+  <div class="lbin"><div class="vid"></div><h3></h3></div>
 </dialog>
 
 <script>
@@ -342,7 +342,7 @@ const WORKS = [
   {zone:"ads", kind:"ai", en:"BeFree", ru:"BeFree", den:"Spec commercial", dru:"Спек-реклама", video:"youtube:cqMoQ9QGIc0"},
   {zone:"ads", kind:"ai", en:"Loyal Club", ru:"Loyal Club", den:"Commercial for a business loyalty service", dru:"Реклама сервиса лояльности для бизнеса", video:"youtube:AzCDA4pJSSE"},
   {zone:"vertical", kind:"ai", tall:1, en:"Znamensk, the city of a thousand roses", ru:"Знаменск — город тысячи роз", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/305d1482-c0dc-450d-87c6-617eed49bb84.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/1edcb690-bc66-4e4f-a31b-ccfa1af1c8d2.jpg"},
-  {zone:"vertical", kind:"ai", tall:1, en:"The road to Allenberg", ru:"Путь в Алленберг", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/a896456f-e921-48db-83fe-e9690ecd59ca.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/8324f42a-bf38-495c-bf3b-49ffe009c382.jpg"},
+  {zone:"vertical", kind:"ai", tall:1, en:"Allenberg: a revolution in 19th-century psychiatry", ru:"Алленберг. Революция в психиатрии XIX века", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/0d6a31ff-8eff-498e-894f-8f1076f0d04e.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/c71f837b-8b33-4d01-ad5a-a1c1ef3153ab.jpg"},
   {zone:"vertical", kind:"ai", tall:1, en:"The stubborn bridge", ru:"«Упрямый» мост", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/eabdfab3-b27d-4618-9d30-7a55b0270f62.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/b3266165-403d-47d6-adbe-943ba1a2aa33.jpg"},
   {zone:"vertical", kind:"ai", tall:1, en:"Across the east of the region", ru:"Путешествие по востоку области", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/d0a54f21-aadb-49db-b2b0-c44590c987ef.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/469ea079-968e-42b9-998e-1a492d1854bc.jpg"},
   {zone:"aifilms", kind:"ai", en:"Natural Intelligence", ru:"Естественный интеллект", den:"Trailer for a film that doesn't exist", dru:"Трейлер несуществующего фильма", video:"vimeo:1180073199"},
@@ -451,13 +451,16 @@ function openVideo(v,title,tall){
   const mp4=/\.mp4(\?|$)/.test(v);
   if(!/^(youtube|vimeo):/.test(v) && !tall && !mp4){ window.open(v,"_blank","noopener"); return; }
   lb.classList.toggle("tall",!!tall);
-  if(mp4){ lb.querySelector(".vid").innerHTML=`<video src="${v}" controls autoplay playsinline style="width:100%;height:100%;object-fit:contain;background:#000"></video>`; lb.querySelector("h3").textContent=title; lb.showModal(); return; }
+  if(mp4){ lb.querySelector(".vid").innerHTML=`<video src="${v}" controls autoplay playsinline style="width:100%;height:100%;object-fit:contain;background:#000"></video>`; lb.querySelector("h3").textContent=title; lock(); lb.showModal(); return; }
   lb.querySelector(".vid").innerHTML=`<iframe src="${embed(v)}" allow="autoplay; fullscreen; picture-in-picture; accelerometer; gyroscope" allowfullscreen title="${title}"></iframe>`;
-  lb.querySelector("h3").textContent=title; lb.showModal();
+  lb.querySelector("h3").textContent=title; lock(); lb.showModal();
 }
+let lockY=0;
+function lock(){ lockY=window.scrollY; const b=document.body.style; b.position="fixed"; b.top=`-${lockY}px`; b.left="0"; b.right="0"; }
+function unlock(){ const b=document.body.style; b.position=b.top=b.left=b.right=""; const h=document.documentElement; const sb=h.style.scrollBehavior; h.style.scrollBehavior="auto"; window.scrollTo(0,lockY); h.style.scrollBehavior=sb; }
 lb.querySelector(".close").onclick=()=>lb.close();
-lb.addEventListener("close",()=>lb.querySelector(".vid").innerHTML="");
-lb.addEventListener("click",e=>{if(e.target===lb)lb.close()});
+lb.addEventListener("close",()=>{ lb.querySelector(".vid").innerHTML=""; unlock(); });
+lb.addEventListener("click",e=>{ if(!e.target.closest(".vid")) lb.close(); });
 
 document.getElementById("reel").onclick=()=>{
   if(CONFIG.showreel) openVideo(CONFIG.showreel,"Showreel");
