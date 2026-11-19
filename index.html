@@ -57,7 +57,7 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 
 .chooser{padding:0 var(--pad)}
 .chooser h2{font:500 15px var(--body);color:var(--smoke);margin-bottom:12px}
-.pick{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.pick{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
 .pick a{display:block;text-decoration:none;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--oxblood-2);min-height:128px}
 .pick a:hover{border-color:var(--safelight)}
 .pick b{display:block;font:700 clamp(17px,1.6vw,22px)/1.15 var(--display);margin-bottom:6px}
@@ -75,7 +75,8 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 .feature .frame{aspect-ratio:16/9}
 .row{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--oxblood-2) transparent}
 .row .card{scroll-snap-align:start;flex:0 0 min(300px,72vw)}
-.row .card.tall{flex:0 0 min(190px,44vw)}
+.row .card.tall{flex:0 0 min(150px,36vw)}
+.card.tall h3{font-size:14px}
 .card.tall .frame{aspect-ratio:9/16}
 .zbody:not(.wide) .row{flex-direction:column;overflow:visible}
 .zbody:not(.wide) .row .card{flex:none;display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
@@ -148,7 +149,6 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
   .hero{grid-template-columns:1fr}
   .hero .screen{order:-1}
   .pick{grid-template-columns:1fr 1fr}
-  .pick a:last-child{grid-column:span 2}
   .pick a{min-height:0;padding:16px}
   .zbody{grid-template-columns:1fr}
   .zbody:not(.wide) .row{flex-direction:row;overflow-x:auto}
@@ -201,6 +201,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
   <div class="pick">
     <a href="#ai"><b data-i="z_ai">AI films</b><span data-i="z_ai_s">Trailers, animation, scenes</span></a>
     <a href="#holiday" class="season"><b data-i="z_hol">New Year</b><span data-i="z_hol_s">Corporate greetings and interactive cards</span></a>
+    <a href="#social"><b data-i="z_soc">Social media</b><span data-i="z_soc_s">Vertical series and reels</span></a>
     <a href="#music"><b data-i="z_mus">Music videos</b><span data-i="z_mus_s">Live action, AI or both</span></a>
     <a href="#ads"><b data-i="z_ads">Commercials</b><span data-i="z_ads_s">Product and brand films, mostly made with AI</span></a>
     <a href="#cinema"><b data-i="z_cin">Film</b><span data-i="z_cin_s">Features and shorts</span></a>
@@ -213,8 +214,6 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
     <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ai_cta">Order an AI film</a>
   </div>
   <div class="zbody wide" data-zone="aifilms"></div>
-  <p class="sub" data-i="vert_h" style="margin-top:28px">Series for social: Allenberg</p>
-  <div class="zbody wide" data-zone="vertical"></div>
 </section>
 
 <section class="zone season" id="holiday">
@@ -240,6 +239,14 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
       <p data-i="hol2_p">A small world clients can touch, right in a phone browser: your office inside a snow globe, your logo in the sand. Tap one to try.</p>
     </div>
   </div>
+</section>
+
+<section class="zone" id="social">
+  <div class="zhead">
+    <div><h2 data-i="z_soc">Social media</h2><p data-i="soc_p">Vertical series for Instagram, TikTok and Shorts with a recurring voice and style. Here: a series of stories about Allenberg and the east of the Kaliningrad region.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="soc_cta">Order a series</a>
+  </div>
+  <div class="zbody wide" data-zone="vertical"></div>
 </section>
 
 <section class="zone" id="music">
@@ -352,7 +359,7 @@ const WORKS = [
   {zone:"shorts", kind:"live", en:"Gaze", ru:"Взор", den:"Short film", dru:"Короткий метр", video:"youtube:l4x9wgIkPjg"},
   {zone:"shorts", kind:"live", en:"Kompromat", ru:"Компромат", den:"Short film, opens on Yandex Disk", dru:"Короткий метр, откроется на Яндекс Диске", video:"https://disk.yandex.ru/i/og7ZmlcTDaB-Lw"}
 ];
-const NAV = [["ai","AI films","AI-фильмы"],["holiday","New Year","Новый год"],["music","Music videos","Клипы"],["ads","Commercials","Реклама"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
+const NAV = [["ai","AI films","AI-фильмы"],["holiday","New Year","Новый год"],["social","Social","Соцсети"],["music","Music videos","Клипы"],["ads","Commercials","Реклама"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
 const KIND = {ai:["AI","AI"], live:["Live action","Съёмка"], hybrid:["Hybrid","Гибрид"]};
 
 const RU = {
@@ -378,7 +385,8 @@ const RU = {
   f1_r:"<span>Сценарий</span> Дмитрий Крутов. <span>Продюсеры</span> Варвара и Дмитрий Крутовы. <span>Режиссёр</span> Вячеслав Руденко.",
   f2_h:"Синдром", f2_m:"Мистический триллер, 2022.",
   f2_r:"<span>Режиссёр</span> Вячеслав Руденко. <span>Ассистент продюсера и режиссёра</span> Варвара Крутова.",
-  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр", vert_h:"Серия для соцсетей: Алленберг",
+  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр", z_soc:"Соцсети", z_soc_s:"Вертикальные серии и рилсы", soc_cta:"Заказать серию",
+  soc_p:"Вертикальные серии для Instagram, TikTok и Shorts с узнаваемым голосом и стилем. Здесь — цикл историй об Алленберге и востоке Калининградской области.",
   z_ai:"AI-фильмы", z_ai_s:"Трейлеры, мультфильмы, сцены", ai_p:"Трейлеры, анимация и сцены, целиком сделанные с AI, но написанные и снятые как настоящее кино.", ai_cta:"Заказать AI-фильм",
   team_h:"Титры",
   r1:"Сценарист, продюсер", n1:"Дмитрий Крутов", x1:"Пишет сценарии всех наших проектов и общается с каждым клиентом.",
