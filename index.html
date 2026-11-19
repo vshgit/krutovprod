@@ -57,7 +57,7 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 
 .chooser{padding:0 var(--pad)}
 .chooser h2{font:500 15px var(--body);color:var(--smoke);margin-bottom:12px}
-.pick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pick{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .pick a{display:block;text-decoration:none;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--oxblood-2);min-height:128px}
 .pick a:hover{border-color:var(--safelight)}
 .pick b{display:block;font:700 clamp(17px,1.6vw,22px)/1.15 var(--display);margin-bottom:6px}
@@ -146,6 +146,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
   .hero{grid-template-columns:1fr}
   .hero .screen{order:-1}
   .pick{grid-template-columns:1fr 1fr}
+  .pick a:last-child{grid-column:span 2}
   .pick a{min-height:0;padding:16px}
   .zbody{grid-template-columns:1fr}
   .zbody:not(.wide) .row{flex-direction:row;overflow-x:auto}
@@ -184,7 +185,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
     <p class="lede" data-i="lede"><strong>The team behind two feature films.</strong> We make commercials, music videos and holiday films with AI, and pick up a real camera when the story needs it.</p>
     <div class="ctas">
       <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="cta_talk">Discuss a project</a>
-      <a class="btn" href="#ads" data-i="cta_work">See commercials</a>
+      <a class="btn" href="#ai" data-i="cta_work">See the work</a>
     </div>
   </div>
   <button class="screen" type="button" id="reel" aria-label="Showreel">
@@ -196,19 +197,20 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
 <section class="chooser" aria-labelledby="pick-h">
   <h2 id="pick-h" data-i="pick_h">What do you need?</h2>
   <div class="pick">
-    <a href="#ads"><b data-i="z_ads">Commercials</b><span data-i="z_ads_s">Product and brand films, mostly made with AI</span></a>
+    <a href="#ai"><b data-i="z_ai">AI films</b><span data-i="z_ai_s">Trailers, animation, scenes</span></a>
     <a href="#holiday" class="season"><b data-i="z_hol">New Year</b><span data-i="z_hol_s">Corporate greetings and interactive cards</span></a>
+    <a href="#ads"><b data-i="z_ads">Commercials</b><span data-i="z_ads_s">Product and brand films, mostly made with AI</span></a>
     <a href="#music"><b data-i="z_mus">Music videos</b><span data-i="z_mus_s">Live action, AI or both</span></a>
-    <a href="#cinema"><b data-i="z_cin">Film</b><span data-i="z_cin_s">Features, AI films, shorts</span></a>
+    <a href="#cinema"><b data-i="z_cin">Film</b><span data-i="z_cin_s">Features and shorts</span></a>
   </div>
 </section>
 
-<section class="zone" id="ads">
+<section class="zone" id="ai">
   <div class="zhead">
-    <div><h2 data-i="z_ads">Commercials</h2><p data-i="ads_p">From script to final grade. With AI a brand film costs a fraction of a shoot and is ready in weeks, not months.</p></div>
-    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ads_cta">Order a commercial</a>
+    <div><h2 data-i="z_ai">AI films</h2><p data-i="ai_p">Trailers, animation and scenes made entirely with AI, written and directed like real cinema.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ai_cta">Order an AI film</a>
   </div>
-  <div class="zbody" data-zone="ads"></div>
+  <div class="zbody" data-zone="aifilms"></div>
 </section>
 
 <section class="zone season" id="holiday">
@@ -236,6 +238,14 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
   </div>
 </section>
 
+<section class="zone" id="ads">
+  <div class="zhead">
+    <div><h2 data-i="z_ads">Commercials</h2><p data-i="ads_p">From script to final grade. With AI a brand film costs a fraction of a shoot and is ready in weeks, not months.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ads_cta">Order a commercial</a>
+  </div>
+  <div class="zbody" data-zone="ads"></div>
+</section>
+
 <section class="zone" id="music">
   <div class="zhead">
     <div><h2 data-i="z_mus">Music videos</h2><p data-i="mus_p">We have made a lot of them: live action, AI and hybrids. Swipe through and pick a mood.</p></div>
@@ -246,7 +256,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
 
 <section class="zone" id="cinema">
   <div class="zhead">
-    <div><h2 data-i="z_cin">Film</h2><p data-i="cin_p">Where we come from: two features in Russian distribution, AI films and shorts.</p></div>
+    <div><h2 data-i="z_cin">Film</h2><p data-i="cin_p">Where we come from: two features in Russian distribution and a handful of shorts.</p></div>
   </div>
   <div class="features">
     <div class="film">
@@ -268,8 +278,6 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
       </div>
     </div>
   </div>
-  <p class="sub" data-i="aif_h">AI films and trailers</p>
-  <div class="zbody wide" data-zone="aifilms" style="margin-bottom:32px"></div>
   <p class="sub" data-i="shorts_h">Short films</p>
   <div class="zbody wide" data-zone="shorts"></div>
 </section>
@@ -336,18 +344,18 @@ const WORKS = [
   {zone:"shorts", kind:"live", en:"Gaze", ru:"Взор", den:"Short film", dru:"Короткий метр", video:"youtube:l4x9wgIkPjg"},
   {zone:"shorts", kind:"live", en:"Kompromat", ru:"Компромат", den:"Short film, opens on Yandex Disk", dru:"Короткий метр, откроется на Яндекс Диске", video:"https://disk.yandex.ru/i/og7ZmlcTDaB-Lw"}
 ];
-const NAV = [["ads","Commercials","Реклама"],["holiday","New Year","Новый год"],["music","Music videos","Клипы"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
+const NAV = [["ai","AI films","AI-фильмы"],["holiday","New Year","Новый год"],["ads","Commercials","Реклама"],["music","Music videos","Клипы"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
 const KIND = {ai:["AI","AI"], live:["Live action","Съёмка"], hybrid:["Hybrid","Гибрид"]};
 
 const RU = {
   h1:"AI-видео кинокачества для брендов",
   lede:"<strong>Команда, за которой два полнометражных фильма.</strong> Делаем рекламу, клипы и новогодние ролики с помощью AI и берём настоящую камеру, когда этого требует история.",
-  cta_talk:"Обсудить проект", cta_work:"Смотреть рекламу", play_reel:"Смотреть шоурил",
+  cta_talk:"Обсудить проект", cta_work:"Смотреть работы", play_reel:"Смотреть шоурил",
   pick_h:"Что вам нужно?",
   z_ads:"Реклама", z_ads_s:"Продуктовые и имиджевые ролики, в основном с AI",
   z_hol:"Новый год", z_hol_s:"Корпоративные поздравления и интерактивные открытки",
   z_mus:"Клипы", z_mus_s:"Съёмка, AI или всё вместе",
-  z_cin:"Кино", z_cin_s:"Полный метр, AI-фильмы, короткий метр",
+  z_cin:"Кино", z_cin_s:"Полный метр и короткий метр",
   ads_p:"От сценария до цветокоррекции. С AI имиджевый ролик стоит в разы меньше съёмки и готов за недели, а не месяцы.",
   ads_cta:"Заказать рекламу",
   hol_p:"Два способа поздравить клиентов и команду в этом году. Оба делаем в стиле вашего бренда.",
@@ -357,12 +365,13 @@ const RU = {
   hol2_h:"Интерактивная открытка", hol2_p:"Маленький мир, который можно потрогать прямо в браузере телефона: ваш офис внутри снежного шара, ваш логотип на песке. Нажмите, чтобы попробовать.",
   demo1:"Встряхните телефон", demo2:"Рисуйте пальцем",
   mus_p:"Мы сняли их много: живая съёмка, AI и гибриды. Листайте и выбирайте настроение.", mus_cta:"Заказать клип",
-  cin_p:"Откуда мы пришли: два полнометражных фильма в российском прокате, AI-фильмы и короткий метр.",
+  cin_p:"Откуда мы пришли: два полнометражных фильма в российском прокате и несколько короткометражек.",
   f1_h:"Дом, в котором люди не живут", f1_m:"Хоррор, 2024. Наш продакшн.",
   f1_r:"<span>Сценарий</span> Дмитрий Крутов. <span>Продюсеры</span> Варвара и Дмитрий Крутовы. <span>Режиссёр</span> Вячеслав Руденко.",
   f2_h:"Синдром", f2_m:"Мистический триллер, 2022.",
   f2_r:"<span>Режиссёр</span> Вячеслав Руденко. <span>Ассистент продюсера и режиссёра</span> Варвара Крутова.",
-  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр", aif_h:"AI-фильмы и трейлеры",
+  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр",
+  z_ai:"AI-фильмы", z_ai_s:"Трейлеры, мультфильмы, сцены", ai_p:"Трейлеры, анимация и сцены, целиком сделанные с AI, но написанные и снятые как настоящее кино.", ai_cta:"Заказать AI-фильм",
   team_h:"Титры",
   r1:"Сценарист, продюсер", n1:"Дмитрий Крутов", x1:"Пишет сценарии всех наших проектов и общается с каждым клиентом.",
   r2:"Продюсер, AI-режиссёр", n2:"Варвара Крутова", x2:"Превращает сценарии в готовые фильмы с помощью генеративных инструментов. Математик по образованию.",
@@ -435,7 +444,7 @@ lb.addEventListener("click",e=>{if(e.target===lb)lb.close()});
 
 document.getElementById("reel").onclick=()=>{
   if(CONFIG.showreel) openVideo(CONFIG.showreel,"Showreel");
-  else document.getElementById("ads").scrollIntoView();
+  else document.getElementById("ai").scrollIntoView();
 };
 document.querySelectorAll("[data-slot]").forEach(a=>{const v=CONFIG[a.dataset.slot]; if(v) a.href=v; else a.hidden=true;});
 document.querySelectorAll("[data-play]").forEach(b=>{
