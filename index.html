@@ -99,6 +99,9 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 .demo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;border-radius:14px;border:1px solid var(--line)}
 .demo b{display:block;font:600 15px var(--body);margin-top:8px}
 .demo span{color:var(--smoke);font-size:13px}
+.nyvid{position:relative;display:block;width:100%;aspect-ratio:4/5;border:0;padding:0;border-radius:14px;overflow:hidden;background:#1d0607;cursor:pointer}
+.nyvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.playbadge.small{top:auto;bottom:14px;transform:translateX(-50%);font-size:14px;padding:10px 18px}
 .idea{display:flex;align-items:flex-end;aspect-ratio:16/10;border-radius:14px;padding:20px;
   background:radial-gradient(70% 80% at 70% 30%,rgba(255,138,61,.45),transparent 70%),radial-gradient(60% 70% at 20% 80%,rgba(227,53,44,.5),transparent 70%),#1d0607}
 .idea q{font:500 18px/1.4 var(--body);quotes:none;max-width:30ch}
@@ -215,9 +218,12 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 17px var(--body)}
   </div>
   <div class="offers">
     <div class="offer">
-      <div class="idea"><q data-i="hol_idea">Your CEO hands out gifts with Santa. Your office covered in snow. Your product on the tree.</q></div>
+      <button class="nyvid" type="button" id="nyvid" aria-label="New Year film">
+        <video src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/c76f5dfd-f64c-4661-88e3-c08013251c6d.mp4" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/f6b93488-74d3-4e1d-8597-f4e8e9fc91a7.jpg" muted loop playsinline autoplay preload="metadata"></video>
+        <span class="playbadge small" data-i="ny_play">Watch with sound</span>
+      </button>
       <h3 data-i="hol1_h">Corporate video greeting</h3>
-      <p data-i="hol1_p">A short film for clients, partners or the team. We write the idea, you approve it, AI makes the rest look like a movie.</p>
+      <p data-i="hol1_p">A short film for clients, partners or the team, like this one. We write the idea, you approve it, AI makes it look like a movie.</p>
     </div>
     <div class="offer">
       <div class="demos">
@@ -306,6 +312,7 @@ const CONFIG = {
   film_kp: "https://www.kinopoisk.ru/film/5426294/",
   film_poster: "https://cdnrrviubnyuntopbez5.svc.cdn.yandex.net/get-kinopoisk-image/10812607/1df120b9-9ebd-4735-a7b7-efa8e028c7f4/orig",
   syn_trailer: "youtube:VN2jBJQ-BWI",
+  ny_full: "https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/20e39b45-253f-403e-a9d8-7244bca8047f.mp4",
   syn_kp: "https://www.kinopoisk.ru/film/1431128/"
 };
 const WORKS = [
@@ -344,8 +351,8 @@ const RU = {
   ads_cta:"Заказать рекламу",
   hol_p:"Два способа поздравить клиентов и команду в этом году. Оба делаем в стиле вашего бренда.",
   hol_cta:"Заказать к Новому году",
-  hol_idea:"Ваш директор вручает подарки вместе с Дедом Морозом. Офис в снегу. Ваш продукт на ёлке.",
-  hol1_h:"Корпоративное видеопоздравление", hol1_p:"Короткий фильм для клиентов, партнёров или команды. Мы придумываем идею, вы утверждаете, AI делает так, чтобы это выглядело как кино.",
+  ny_play:"Смотреть со звуком",
+  hol1_h:"Корпоративное видеопоздравление", hol1_p:"Короткий фильм для клиентов, партнёров или команды, как этот. Мы придумываем идею, вы утверждаете, AI делает так, чтобы это выглядело как кино.",
   hol2_h:"Интерактивная открытка", hol2_p:"Маленький мир, который можно потрогать прямо в браузере телефона: ваш офис внутри снежного шара, ваш логотип на песке. Нажмите, чтобы попробовать.",
   demo1:"Встряхните телефон", demo2:"Рисуйте пальцем",
   mus_p:"Мы сняли их много: живая съёмка, AI и гибриды. Листайте и выбирайте настроение.", mus_cta:"Заказать клип",
@@ -414,8 +421,10 @@ function renderNav(){
 const lb=document.getElementById("lb");
 function openVideo(v,title,tall){
   if(!v) return;
-  if(!/^(youtube|vimeo):/.test(v) && !tall){ window.open(v,"_blank","noopener"); return; }
+  const mp4=/\.mp4(\?|$)/.test(v);
+  if(!/^(youtube|vimeo):/.test(v) && !tall && !mp4){ window.open(v,"_blank","noopener"); return; }
   lb.classList.toggle("tall",!!tall);
+  if(mp4){ lb.querySelector(".vid").innerHTML=`<video src="${v}" controls autoplay playsinline style="width:100%;height:100%;object-fit:contain;background:#000"></video>`; lb.querySelector("h3").textContent=title; lb.showModal(); return; }
   lb.querySelector(".vid").innerHTML=`<iframe src="${embed(v)}" allow="autoplay; fullscreen; picture-in-picture; accelerometer; gyroscope" allowfullscreen title="${title}"></iframe>`;
   lb.querySelector("h3").textContent=title; lb.showModal();
 }
@@ -432,6 +441,7 @@ document.querySelectorAll("[data-play]").forEach(b=>{
   const v=CONFIG[b.dataset.play]; if(!v){b.hidden=true;return}
   b.onclick=()=>openVideo(v,b.closest(".film").querySelector("h3").textContent);
 });
+document.getElementById("nyvid").onclick=()=>openVideo(CONFIG.ny_full,L("New Year film","Новогодний ролик"),true);
 document.querySelectorAll("[data-demo]").forEach(b=>b.onclick=()=>openVideo(b.dataset.demo,b.querySelector("b").textContent,true));
 if(CONFIG.film_poster) document.getElementById("poster").style.backgroundImage=`url(${CONFIG.film_poster})`;
 
