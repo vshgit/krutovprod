@@ -563,7 +563,6 @@ const cmText=()=>{const m=MSG[cmTopic]||MSG.general; return L(m[0],m[1]);};
 function cmShow(step){cm.querySelectorAll(".cmstep").forEach(e=>e.hidden=e.dataset.step!==step);}
 function cmOpen(topic){cmTopic=topic||"general"; cmShow("pick"); cm.querySelector(".cmmsg").textContent=""; cm.querySelector(".cmstatus").textContent=""; lock(); cm.showModal();}
 cm.addEventListener("close",unlock);
-cm.addEventListener("click",e=>{ if(!e.target.closest(".cmbox")) cm.close(); });
 cm.querySelector(".cmx").onclick=()=>cm.close();
 document.querySelectorAll("[data-topic]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault(); cmOpen(a.dataset.topic);}));
 cm.querySelectorAll(".cmopt").forEach(b=>b.onclick=async()=>{
