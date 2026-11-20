@@ -183,6 +183,25 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
   .zhead .btn{width:100%}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+#cm{background:rgba(20,4,5,.88);color:var(--bone)}
+#cm .cmbox{position:relative;width:min(460px,92vw);background:var(--oxblood-2);border:1px solid var(--line);border-radius:20px;padding:26px 22px 22px;touch-action:auto;max-height:90dvh;overflow:auto}
+#cm h2{font:700 22px/1.2 var(--display);margin:0 40px 18px 0;color:var(--bone)}
+.cmnote{color:var(--smoke);font-size:14px;margin-bottom:18px}
+.cmx{position:absolute;top:14px;right:14px;background:none;border:0;color:var(--smoke);font:500 14px var(--body);cursor:pointer;padding:6px}
+.cmopts{display:grid;gap:10px}
+.cmopt{display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:var(--oxblood);border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:var(--bone);cursor:pointer;font:inherit}
+.cmopt:hover{border-color:var(--safelight)}
+.cmopt b{display:block;font:600 17px var(--body);color:var(--bone)}
+.cmi{flex:none;width:28px;height:28px;color:var(--bone)}
+.cmopt:hover .cmi{color:var(--safelight)}
+.cmopt span{display:block;color:var(--smoke);font-size:13px;line-height:1.35;margin-top:2px}
+.cmmsg{margin-top:14px;font-size:14px;color:var(--ember);min-height:1em}
+#cm form label{display:block;margin-bottom:12px}
+#cm form label span{display:block;font-size:13px;color:var(--smoke);margin-bottom:4px}
+#cm input,#cm textarea{width:100%;background:var(--oxblood);border:1px solid var(--line);border-radius:10px;color:var(--bone);font:400 16px var(--body);padding:10px 12px}
+#cm input:focus,#cm textarea:focus{outline:2px solid var(--safelight);outline-offset:1px}
+#cm .hp{position:absolute;left:-9999px;width:1px;height:1px}
+.cmstatus{margin-top:12px;font-size:14px;min-height:1em}
 </style>
 </head>
 <body>
@@ -205,7 +224,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
     <h1 data-i="h1">Cinema-grade AI video for brands</h1>
     <p class="lede" data-i="lede"><strong>The team behind two feature films.</strong> We make commercials, music videos and holiday films with AI, and pick up a real camera when the story needs it.</p>
     <div class="ctas">
-      <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="cta_talk">Discuss a project</a>
+      <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="cta_talk" data-topic="general">Discuss a project</a>
     </div>
   </div>
   <button class="screen" type="button" id="reel" aria-label="Showreel">
@@ -228,7 +247,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
 <section class="zone" id="ads">
   <div class="zhead">
     <div><h2 data-i="ads_h">Commercials &amp; AI films</h2><p data-i="ads_p">Brand films from script to final grade, plus trailers, animation and story scenes. With AI it costs a fraction of a shoot and is ready in weeks, not months.</p></div>
-    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ads_cta">Order a commercial</a>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ads_cta" data-topic="ads">Order a commercial</a>
   </div>
   <div class="zbody wide" data-zone="ads"></div>
 </section>
@@ -236,7 +255,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
 <section class="zone season" id="holiday">
   <div class="zhead">
     <div><h2 data-i="z_hol">New Year</h2><p data-i="hol_p">Two ways to greet your clients and team this year. Both are made in your brand style.</p></div>
-    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="hol_cta">Book a New Year project</a>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="hol_cta" data-topic="holiday">Book a New Year project</a>
   </div>
   <div class="offers">
     <div class="offer">
@@ -267,7 +286,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
 <section class="zone" id="social">
   <div class="zhead">
     <div><h2 data-i="z_soc">Social media</h2><p data-i="soc_p">Vertical stories and series for Instagram, TikTok and Shorts: comedy sketches with recurring characters or an educational series like the one about Allenberg and the east of the Kaliningrad region.</p></div>
-    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="soc_cta">Order a series</a>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="soc_cta" data-topic="social">Order a series</a>
   </div>
   <div class="zbody wide" data-zone="vertical"></div>
 </section>
@@ -275,7 +294,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
 <section class="zone" id="music">
   <div class="zhead">
     <div><h2 data-i="z_mus">Music videos</h2><p data-i="mus_p">We have made a lot of them: live action, AI and hybrids. Swipe through and pick a mood.</p></div>
-    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="mus_cta">Order a music video</a>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="mus_cta" data-topic="music">Order a music video</a>
   </div>
   <div class="zbody wide" data-zone="music"></div>
 </section>
@@ -321,6 +340,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
   <h2 data-i="ct_h">Tell us what you want to film</h2>
   <div class="channels">
     <a href="https://t.me/Fan_taz_er"><span>Telegram</span><b>@Fan_taz_er</b></a>
+    <a href="https://wa.me/79995236709"><span>WhatsApp</span><b>+7 999 523-67-09</b></a>
     <a href="mailto:krutovscript@gmail.com?subject=Video%20project"><span>Email</span><b>krutovscript@gmail.com</b></a>
     <a href="https://instagram.com/krutovprod_ai"><span>Instagram</span><b>@krutovprod_ai</b></a>
     <a href="https://www.youtube.com/@Крутое_кино"><span>YouTube</span><b data-i="yt">Krutoe Kino</b></a>
@@ -328,6 +348,30 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
   <footer><span data-i="ft_where">Working remotely, worldwide</span><span>© 2026 KRUTOV Production</span></footer>
 </section>
 </main>
+
+<dialog id="cm" aria-labelledby="cm-h">
+  <div class="cmbox">
+    <button class="cmx" type="button" data-i="close">Close</button>
+    <div class="cmstep" data-step="pick">
+      <h2 id="cm-h" data-i="cm_h">How would you like to reach us?</h2>
+      <div class="cmopts">
+        <button type="button" class="cmopt" data-ch="tg"><svg class="cmi" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.3 3.6 2.9 10.7c-1.1.4-1 1.9.1 2.2l4.6 1.4 1.8 5.5c.3.9 1.4 1.2 2.1.5l2.6-2.6 4.8 3.5c.8.6 2 .1 2.2-.9l3.1-14.5c.2-1-.8-1.8-1.9-1.4Zm-11.5 11 8.3-7.4-6.6 8.3-.3 3-1.4-3.9Z"/></svg><div><b>Telegram</b><span data-i="cm_tg">The text is copied, paste it into the chat</span></div></button>
+        <button type="button" class="cmopt" data-ch="wa"><svg class="cmi" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M12 2.8a9.2 9.2 0 0 0-7.9 13.9L2.9 21.2l4.6-1.2A9.2 9.2 0 1 0 12 2.8Z"/><path fill="currentColor" d="M8.7 7.4c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.5.7c-.2.2-.2.4 0 .6.6 1 1.5 1.9 2.5 2.4.3.2.5.1.6-.1l.7-.8c.2-.2.4-.3.6-.2l1.9.9c.3.1.4.2.4.5 0 .5-.2 1.3-.9 1.8-.7.5-1.7.6-3.1 0-2.4-.9-3.9-3.2-4.2-3.6-.3-.4-1-1.5-1-2.8 0-.9.4-1.5.6-1.8Z"/></svg><div><b>WhatsApp</b><span data-i="cm_wa">Opens a chat with the message ready</span></div></button>
+        <button type="button" class="cmopt" data-ch="form"><svg class="cmi" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M4 5.5h16v13H4z M4 6.5l8 6 8-6"/></svg><div><b data-i="cm_form_b">Leave your contacts</b><span data-i="cm_form">We will get back to you ourselves</span></div></button>
+      </div>
+      <p class="cmmsg"></p>
+    </div>
+    <form class="cmstep" data-step="form" hidden>
+      <h2 data-i="f_h">Leave your contacts</h2>
+      <label><span data-i="f_name">Name</span><input name="name" required autocomplete="name"></label>
+      <label><span data-i="f_contact">Phone, Telegram or email</span><input name="contact" required></label>
+      <label><span data-i="f_msg">What would you like to make?</span><textarea name="message" rows="3"></textarea></label>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+      <button class="btn solid" type="submit" data-i="f_send">Send request</button>
+      <p class="cmstatus" role="status"></p>
+    </form>
+  </div>
+</dialog>
 
 <dialog id="lb">
   <button class="close" type="button" data-i="close">Close</button>
@@ -411,6 +455,9 @@ const RU = {
   r1:"Сценарист, продюсер", n1:"Дмитрий Крутов", x1:"Пишет сценарии всех наших проектов и общается с каждым клиентом.",
   r2:"Продюсер, AI-режиссёр", n2:"Варвара Крутова", x2:"Превращает сценарии в готовые фильмы с помощью генеративных инструментов. Математик по образованию.",
   r3:"Режиссёр", n3:"Вячеслав Руденко", x3:"Режиссёр обоих наших полнометражных фильмов. Ведёт живые съёмки.",
+  cm_h:"Как вам удобнее связаться?",
+  cm_tg:"Текст скопируется, вставьте его в чат", cm_wa:"Откроется чат с готовым сообщением", cm_form_b:"Оставить контакты", cm_form:"Мы сами свяжемся с вами",
+  f_h:"Оставьте контакты", f_name:"Имя", f_contact:"Телефон, Telegram или почта", f_msg:"Что хотите снять?", f_send:"Отправить заявку",
   ct_h:"Расскажите, что хотите снять", yt:"Крутое кино", ft_where:"Работаем удалённо по всему миру", close:"Закрыть"
 };
 const EN = {};
@@ -500,6 +547,47 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){
   document.querySelectorAll(".zones a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id));
 }}),{rootMargin:"-45% 0px -50% 0px"});
 NAV.forEach(([id])=>{const s=document.getElementById(id); if(s) io.observe(s)});
+
+/* ===== Contact chooser ===== */
+const CONTACT={tg:"Fan_taz_er", wa:"79995236709", mail:"krutovscript@gmail.com"};
+const MSG={
+  general:["Hi! I found KRUTOV Production on your website and would like to discuss a project.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу обсудить проект."],
+  ads:["Hi! I'm writing from the KRUTOV Production website. I'd like to order a commercial.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу заказать рекламный ролик."],
+  holiday:["Hi! I'm writing from the KRUTOV Production website. I'd like to order a New Year video greeting for our company.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу заказать новогоднее видеопоздравление для компании."],
+  social:["Hi! I'm writing from the KRUTOV Production website. I'd like to order a video for social media.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу заказать видео для соцсетей."],
+  music:["Hi! I'm writing from the KRUTOV Production website. I'd like to order a music video.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу заказать клип."]
+};
+const cm=document.getElementById("cm"); let cmTopic="general";
+const cmText=()=>{const m=MSG[cmTopic]||MSG.general; return L(m[0],m[1]);};
+function cmShow(step){cm.querySelectorAll(".cmstep").forEach(e=>e.hidden=e.dataset.step!==step);}
+function cmOpen(topic){cmTopic=topic||"general"; cmShow("pick"); cm.querySelector(".cmmsg").textContent=""; cm.querySelector(".cmstatus").textContent=""; lock(); cm.showModal();}
+cm.addEventListener("close",unlock);
+cm.addEventListener("click",e=>{ if(!e.target.closest(".cmbox")) cm.close(); });
+cm.querySelector(".cmx").onclick=()=>cm.close();
+document.querySelectorAll("[data-topic]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault(); cmOpen(a.dataset.topic);}));
+cm.querySelectorAll(".cmopt").forEach(b=>b.onclick=async()=>{
+  const t=cmText(), ch=b.dataset.ch;
+  if(ch==="wa"){ window.open(`https://wa.me/${CONTACT.wa}?text=${encodeURIComponent(t)}`,"_blank","noopener"); cm.close(); return; }
+  if(ch==="tg"){
+    let ok=false; try{ await navigator.clipboard.writeText(t); ok=true; }catch(e){}
+    window.open(`https://t.me/${CONTACT.tg}`,"_blank","noopener");
+    cm.querySelector(".cmmsg").textContent= ok ? L("The text is copied. Paste it into the chat and send.","Текст скопирован. Вставьте его в чат и отправьте.") : L("Write to us: ","Напишите нам: ")+(ok?"":"«"+t+"»");
+    return;
+  }
+  const f=cm.querySelector("form"); f.message.value=t; cmShow("form"); f.name.focus();
+});
+cm.querySelector("form").addEventListener("submit",async e=>{
+  e.preventDefault(); const f=e.target, st=f.querySelector(".cmstatus"), btn=f.querySelector("button[type=submit]");
+  if(f._honey.value) return;
+  btn.disabled=true; st.textContent=L("Sending…","Отправляем…");
+  try{
+    const r=await fetch(`https://formsubmit.co/ajax/${CONTACT.mail}`,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({name:f.name.value,contact:f.contact.value,message:f.message.value,topic:cmTopic,lang:lang,_subject:"Заявка с сайта KRUTOV: "+cmTopic,_template:"table"})});
+    if(!r.ok) throw 0;
+    st.textContent=L("Thank you! We will get back to you soon.","Спасибо! Мы скоро свяжемся с вами."); f.reset();
+  }catch(err){ st.textContent=L("Could not send. Please write to us in Telegram or WhatsApp.","Не получилось отправить. Напишите нам в Telegram или WhatsApp."); }
+  btn.disabled=false;
+});
 
 function setLang(l){
   lang=l; document.documentElement.lang=l;
