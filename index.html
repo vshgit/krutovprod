@@ -98,6 +98,9 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .card:hover img{transform:scale(1.04)}
 .card:hover .frame{outline:1px solid var(--safelight)}
+.card.still{cursor:default}
+.card.still:hover img{transform:none}
+.card.still:hover .frame{outline:0}
 .card h3{font:500 16px/1.3 var(--body);margin-top:10px}
 .feature .card h3{font:600 20px/1.25 var(--display);margin-top:14px}
 .card p{color:var(--smoke);font-size:14px}
@@ -369,10 +372,10 @@ const WORKS = [
   {zone:"music", kind:"live", en:"Бриджи — Паранормальные", ru:"Бриджи — Паранормальные", den:"Music video", dru:"Клип", video:"youtube:rTm1Zn56cuM"},
   {zone:"music", kind:"live", en:"Imortelle — Void", ru:"Imortelle — Void", den:"Music video", dru:"Клип", video:"youtube:mNvPCgVb1kw"},
   {zone:"music", kind:"live", en:"Britva Oma — Проблески тебя", ru:"Britva Oma — Проблески тебя", den:"Music video", dru:"Клип", video:"youtube:A1N_RL1pG08"},
-  {zone:"shorts", kind:"live", en:"The Red Door", ru:"Красная дверь", den:"Short film", dru:"Короткий метр", video:"youtube:WeyQ_Dv2nI4"},
-  {zone:"shorts", kind:"live", en:"Butterfly", ru:"Бабочка", den:"Short film", dru:"Короткий метр", video:"youtube:T68mJPDFBxg"},
-  {zone:"shorts", kind:"live", en:"Gaze", ru:"Взор", den:"Short film", dru:"Короткий метр", video:"youtube:l4x9wgIkPjg"},
-  {zone:"shorts", kind:"live", en:"Kompromat", ru:"Компромат", den:"Short film, opens on Yandex Disk", dru:"Короткий метр, откроется на Яндекс Диске", video:"https://disk.yandex.ru/i/og7ZmlcTDaB-Lw"}
+  {zone:"shorts", still:1, kind:"live", en:"The Red Door", ru:"Красная дверь", den:"Short film", dru:"Короткий метр", video:"youtube:WeyQ_Dv2nI4"},
+  {zone:"shorts", still:1, kind:"live", en:"Butterfly", ru:"Бабочка", den:"Short film", dru:"Короткий метр", video:"youtube:T68mJPDFBxg"},
+  {zone:"shorts", still:1, kind:"live", en:"Gaze", ru:"Взор", den:"Short film", dru:"Короткий метр", video:"youtube:l4x9wgIkPjg"},
+  {zone:"shorts", still:1, kind:"live", en:"Kompromat", ru:"Компромат", den:"Short film", dru:"Короткий метр", video:"https://disk.yandex.ru/i/og7ZmlcTDaB-Lw"}
 ];
 const NAV = [["ads","Commercials","Реклама"],["holiday","New Year","Новый год"],["social","Social","Соцсети"],["music","Music videos","Клипы"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
 const KIND = {ai:["AI","AI"], live:["Live action","Съёмка"], hybrid:["Hybrid","Гибрид"]};
@@ -426,7 +429,7 @@ function embed(v){
 }
 function card(w){
   const yt=w.video.startsWith("youtube:")?w.video.slice(8):"";
-  const b=document.createElement("button"); b.type="button"; b.className="card";
+  const b=document.createElement(w.still?"div":"button"); if(!w.still) b.type="button"; b.className="card"+(w.still?" still":"");
   const fr=document.createElement("div"); fr.className="frame";
   const vm=w.video.startsWith("vimeo:")?w.video.slice(6):"";
   const src=w.poster||(yt?`https://i.ytimg.com/vi/${yt}/maxresdefault.jpg`:vm?`https://vumbnail.com/${vm}_large.jpg`:"");
@@ -440,7 +443,7 @@ function card(w){
   const t=document.createElement("div"); t.innerHTML=`<h3>${L(w.en,w.ru)}</h3><p>${L(w.den,w.dru)}</p>`;
   b.append(fr,t);
   if(w.tall) b.classList.add("tall");
-  b.onclick=()=>openVideo(w.video,L(w.en,w.ru),!!w.tall);
+  if(!w.still) b.onclick=()=>openVideo(w.video,L(w.en,w.ru),!!w.tall);
   return b;
 }
 function renderZones(){
