@@ -69,7 +69,7 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 
 .chooser{padding:0 var(--pad)}
 .chooser h2{font:500 15px var(--body);color:var(--smoke);margin-bottom:12px}
-.pick{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.pick{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .pick a{display:block;text-decoration:none;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--oxblood-2);min-height:128px}
 .pick a:hover{border-color:var(--safelight)}
 .pick b{display:block;font:700 clamp(17px,1.6vw,22px)/1.15 var(--display);margin-bottom:6px}
@@ -165,6 +165,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
   .hero .screen{order:-1}
   .pick{grid-template-columns:1fr 1fr}
   .pick a{min-height:0;padding:16px}
+  .pick a:last-child:nth-child(odd){grid-column:1/-1}
   .zbody{grid-template-columns:1fr}
   .zbody:not(.wide) .row{flex-direction:row;overflow-x:auto}
   .zbody:not(.wide) .row .card{display:block;flex:0 0 min(260px,70vw)}
@@ -216,7 +217,6 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
     <a href="#ads"><b data-i="z_ads">Commercials</b><span data-i="z_ads_s">Product and brand films, mostly made with AI</span></a>
     <a href="#holiday" class="season"><b data-i="z_hol">New Year</b><span data-i="z_hol_s">Corporate greetings and interactive cards</span></a>
     <a href="#social"><b data-i="z_soc">Social media</b><span data-i="z_soc_s">Vertical series and reels</span></a>
-    <a href="#ai"><b data-i="z_ai">AI films</b><span data-i="z_ai_s">Trailers, animation, scenes</span></a>
     <a href="#music"><b data-i="z_mus">Music videos</b><span data-i="z_mus_s">Live action, AI or both</span></a>
     <a href="#cinema"><b data-i="z_cin">Film</b><span data-i="z_cin_s">Features and shorts</span></a>
   </div>
@@ -224,7 +224,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
 
 <section class="zone" id="ads">
   <div class="zhead">
-    <div><h2 data-i="z_ads">Commercials</h2><p data-i="ads_p">From script to final grade. With AI a brand film costs a fraction of a shoot and is ready in weeks, not months.</p></div>
+    <div><h2 data-i="ads_h">Commercials &amp; AI films</h2><p data-i="ads_p">Brand films from script to final grade, plus trailers, animation and story scenes. With AI it costs a fraction of a shoot and is ready in weeks, not months.</p></div>
     <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ads_cta">Order a commercial</a>
   </div>
   <div class="zbody wide" data-zone="ads"></div>
@@ -267,14 +267,6 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
     <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="soc_cta">Order a series</a>
   </div>
   <div class="zbody wide" data-zone="vertical"></div>
-</section>
-
-<section class="zone" id="ai">
-  <div class="zhead">
-    <div><h2 data-i="z_ai">AI films</h2><p data-i="ai_p">Trailers, animation and scenes made entirely with AI, written and directed like real cinema.</p></div>
-    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ai_cta">Order an AI film</a>
-  </div>
-  <div class="zbody wide" data-zone="aifilms"></div>
 </section>
 
 <section class="zone" id="music">
@@ -357,18 +349,18 @@ const CONFIG = {
 const WORKS = [
   {zone:"ads", kind:"ai", en:"Vantér knife", ru:"Нож Vantér", den:"AI product commercial, 15 sec", dru:"AI-реклама продукта, 15 сек", video:"assets/knife.mp4", poster:"assets/knife.jpg"},
   {zone:"ads", kind:"ai", en:"ORA perfume", ru:"Духи ORA", den:"AI perfume commercial, 15 sec", dru:"AI-реклама парфюма, 15 сек", video:"assets/ora.mp4", poster:"assets/ora.jpg"},
-  {zone:"ads", kind:"ai", en:"Pippin", ru:"Pippin", den:"Commercial for a fictional garden-hose brand", dru:"Реклама для вымышленного бренда садовых шлангов", video:"vimeo:1180061445"},
+  {zone:"ads", kind:"ai", en:"Natural Intelligence", ru:"Естественный интеллект", den:"Trailer for a film that doesn't exist", dru:"Трейлер несуществующего фильма", video:"vimeo:1180073199"},
   {zone:"ads", kind:"ai", en:"Loyal Club", ru:"Loyal Club", den:"Commercial for a business loyalty service", dru:"Реклама сервиса лояльности для бизнеса", video:"youtube:AzCDA4pJSSE"},
   {zone:"ads", kind:"live", en:"BeFree", ru:"BeFree", den:"Commercial", dru:"Рекламный ролик", video:"youtube:cqMoQ9QGIc0"},
+  {zone:"ads", kind:"ai", en:"Cosmo Café", ru:"Космо-Кафе", den:"Animated short, idea to final cut", dru:"Мультфильм от идеи до финала", video:"vimeo:1180079665"},
+  {zone:"ads", kind:"ai", en:"Pippin", ru:"Pippin", den:"Commercial for a fictional garden-hose brand", dru:"Реклама для вымышленного бренда садовых шлангов", video:"vimeo:1180061445"},
+  {zone:"ads", kind:"ai", en:"The Girl in the Silent House", ru:"Девушка в тихом доме", den:"Horror scene", dru:"Хоррор-сцена", video:"vimeo:1182213203"},
   {zone:"ads", kind:"live", en:"Tom Ford", ru:"Tom Ford", den:"Commercial", dru:"Рекламный ролик", video:"youtube:Nt9WNHWFKZ8"},
   {zone:"vertical", kind:"ai", tall:1, en:"Mia", ru:"Мия", den:"Short comedy story", dru:"Короткая комедийная история", video:"assets/mia.mp4", poster:"assets/mia.jpg"},
   {zone:"vertical", kind:"ai", tall:1, en:"Znamensk, the city of a thousand roses", ru:"Знаменск — город тысячи роз", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/305d1482-c0dc-450d-87c6-617eed49bb84.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/1edcb690-bc66-4e4f-a31b-ccfa1af1c8d2.jpg"},
   {zone:"vertical", kind:"ai", tall:1, en:"Allenberg: a revolution in 19th-century psychiatry", ru:"Алленберг. Революция в психиатрии XIX века", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/0d6a31ff-8eff-498e-894f-8f1076f0d04e.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/c71f837b-8b33-4d01-ad5a-a1c1ef3153ab.jpg"},
   {zone:"vertical", kind:"ai", tall:1, en:"The stubborn bridge", ru:"«Упрямый» мост", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/eabdfab3-b27d-4618-9d30-7a55b0270f62.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/b3266165-403d-47d6-adbe-943ba1a2aa33.jpg"},
   {zone:"vertical", kind:"ai", tall:1, en:"Across the east of the region", ru:"Путешествие по востоку области", den:"Reel", dru:"Рилс", video:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/d0a54f21-aadb-49db-b2b0-c44590c987ef.mp4", poster:"https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/469ea079-968e-42b9-998e-1a492d1854bc.jpg"},
-  {zone:"aifilms", kind:"ai", en:"Natural Intelligence", ru:"Естественный интеллект", den:"Trailer for a film that doesn't exist", dru:"Трейлер несуществующего фильма", video:"vimeo:1180073199"},
-  {zone:"aifilms", kind:"ai", en:"Cosmo Café", ru:"Космо-Кафе", den:"Animated short, idea to final cut", dru:"Мультфильм от идеи до финала", video:"vimeo:1180079665"},
-  {zone:"aifilms", kind:"ai", en:"The Girl in the Silent House", ru:"Девушка в тихом доме", den:"Horror scene", dru:"Хоррор-сцена", video:"vimeo:1182213203"},
   {zone:"music", kind:"live", en:"Blonde and Bond — Между строк", ru:"Blonde and Bond — Между строк", den:"Music video", dru:"Клип", video:"youtube:JPB4Xb7iGJg"},
   {zone:"music", kind:"ai", en:"Golden Hour", ru:"Golden Hour", den:"AI music video", dru:"AI-клип", video:"assets/golden-hour.mp4", poster:"assets/golden-hour.jpg"},
   {zone:"music", kind:"live", en:"VARYA — Вдохни меня", ru:"VARYA — Вдохни меня", den:"Music video", dru:"Клип", video:"youtube:UsA2cNBQC3g"},
@@ -382,7 +374,7 @@ const WORKS = [
   {zone:"shorts", kind:"live", en:"Gaze", ru:"Взор", den:"Short film", dru:"Короткий метр", video:"youtube:l4x9wgIkPjg"},
   {zone:"shorts", kind:"live", en:"Kompromat", ru:"Компромат", den:"Short film, opens on Yandex Disk", dru:"Короткий метр, откроется на Яндекс Диске", video:"https://disk.yandex.ru/i/og7ZmlcTDaB-Lw"}
 ];
-const NAV = [["ads","Commercials","Реклама"],["holiday","New Year","Новый год"],["social","Social","Соцсети"],["ai","AI films","AI-фильмы"],["music","Music videos","Клипы"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
+const NAV = [["ads","Commercials","Реклама"],["holiday","New Year","Новый год"],["social","Social","Соцсети"],["music","Music videos","Клипы"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
 const KIND = {ai:["AI","AI"], live:["Live action","Съёмка"], hybrid:["Hybrid","Гибрид"]};
 
 const RU = {
@@ -394,7 +386,8 @@ const RU = {
   z_hol:"Новый год", z_hol_s:"Корпоративные поздравления и интерактивные открытки",
   z_mus:"Клипы", z_mus_s:"Съёмка, AI или всё вместе",
   z_cin:"Кино", z_cin_s:"Полный метр и короткий метр",
-  ads_p:"От сценария до цветокоррекции. С AI имиджевый ролик стоит в разы меньше съёмки и готов за недели, а не месяцы.",
+  ads_h:"Реклама и AI-фильмы",
+  ads_p:"Ролики для брендов от сценария до цветокоррекции, а ещё трейлеры, анимация и сюжетные сцены. С AI это стоит в разы меньше съёмки и готово за недели, а не месяцы.",
   ads_cta:"Заказать рекламу",
   hol_p:"Два способа поздравить клиентов и команду в этом году. Оба делаем в стиле вашего бренда.",
   hol_cta:"Заказать к Новому году",
