@@ -203,21 +203,21 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
 <section class="chooser" aria-labelledby="pick-h">
   <h2 id="pick-h" data-i="pick_h">What do you need?</h2>
   <div class="pick">
-    <a href="#ai"><b data-i="z_ai">AI films</b><span data-i="z_ai_s">Trailers, animation, scenes</span></a>
+    <a href="#ads"><b data-i="z_ads">Commercials</b><span data-i="z_ads_s">Product and brand films, mostly made with AI</span></a>
     <a href="#holiday" class="season"><b data-i="z_hol">New Year</b><span data-i="z_hol_s">Corporate greetings and interactive cards</span></a>
     <a href="#social"><b data-i="z_soc">Social media</b><span data-i="z_soc_s">Vertical series and reels</span></a>
+    <a href="#ai"><b data-i="z_ai">AI films</b><span data-i="z_ai_s">Trailers, animation, scenes</span></a>
     <a href="#music"><b data-i="z_mus">Music videos</b><span data-i="z_mus_s">Live action, AI or both</span></a>
-    <a href="#ads"><b data-i="z_ads">Commercials</b><span data-i="z_ads_s">Product and brand films, mostly made with AI</span></a>
     <a href="#cinema"><b data-i="z_cin">Film</b><span data-i="z_cin_s">Features and shorts</span></a>
   </div>
 </section>
 
-<section class="zone" id="ai">
+<section class="zone" id="ads">
   <div class="zhead">
-    <div><h2 data-i="z_ai">AI films</h2><p data-i="ai_p">Trailers, animation and scenes made entirely with AI, written and directed like real cinema.</p></div>
-    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ai_cta">Order an AI film</a>
+    <div><h2 data-i="z_ads">Commercials</h2><p data-i="ads_p">From script to final grade. With AI a brand film costs a fraction of a shoot and is ready in weeks, not months.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ads_cta">Order a commercial</a>
   </div>
-  <div class="zbody wide" data-zone="aifilms"></div>
+  <div class="zbody wide" data-zone="ads"></div>
 </section>
 
 <section class="zone season" id="holiday">
@@ -259,20 +259,20 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
   <div class="zbody wide" data-zone="vertical"></div>
 </section>
 
+<section class="zone" id="ai">
+  <div class="zhead">
+    <div><h2 data-i="z_ai">AI films</h2><p data-i="ai_p">Trailers, animation and scenes made entirely with AI, written and directed like real cinema.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ai_cta">Order an AI film</a>
+  </div>
+  <div class="zbody wide" data-zone="aifilms"></div>
+</section>
+
 <section class="zone" id="music">
   <div class="zhead">
     <div><h2 data-i="z_mus">Music videos</h2><p data-i="mus_p">We have made a lot of them: live action, AI and hybrids. Swipe through and pick a mood.</p></div>
     <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="mus_cta">Order a music video</a>
   </div>
   <div class="zbody wide" data-zone="music"></div>
-</section>
-
-<section class="zone" id="ads">
-  <div class="zhead">
-    <div><h2 data-i="z_ads">Commercials</h2><p data-i="ads_p">From script to final grade. With AI a brand film costs a fraction of a shoot and is ready in weeks, not months.</p></div>
-    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ads_cta">Order a commercial</a>
-  </div>
-  <div class="zbody wide" data-zone="ads"></div>
 </section>
 
 <section class="zone" id="cinema">
@@ -370,7 +370,7 @@ const WORKS = [
   {zone:"shorts", kind:"live", en:"Gaze", ru:"Взор", den:"Short film", dru:"Короткий метр", video:"youtube:l4x9wgIkPjg"},
   {zone:"shorts", kind:"live", en:"Kompromat", ru:"Компромат", den:"Short film, opens on Yandex Disk", dru:"Короткий метр, откроется на Яндекс Диске", video:"https://disk.yandex.ru/i/og7ZmlcTDaB-Lw"}
 ];
-const NAV = [["ai","AI films","AI-фильмы"],["holiday","New Year","Новый год"],["social","Social","Соцсети"],["music","Music videos","Клипы"],["ads","Commercials","Реклама"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
+const NAV = [["ads","Commercials","Реклама"],["holiday","New Year","Новый год"],["social","Social","Соцсети"],["ai","AI films","AI-фильмы"],["music","Music videos","Клипы"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
 const KIND = {ai:["AI","AI"], live:["Live action","Съёмка"], hybrid:["Hybrid","Гибрид"]};
 
 const RU = {
