@@ -53,6 +53,8 @@ h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;ma
 .screen{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 0 110px -16px rgba(227,53,44,.5);border:0;width:100%;cursor:pointer;color:inherit}
 .lamp{position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 55%,rgba(255,138,61,.55),transparent 60%),radial-gradient(90% 120% at 50% 50%,var(--safelight),var(--oxblood) 75%);animation:lamp 2.2s ease-out both}
 @keyframes lamp{0%{opacity:0}30%{opacity:.6}38%{opacity:.25}55%{opacity:.9}100%{opacity:1}}
+.reelvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+.reelvid.on{opacity:1}
 .playbadge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--bone);color:var(--oxblood);font:600 15px var(--body);padding:13px 24px;border-radius:999px;white-space:nowrap}
 
 .chooser{padding:0 var(--pad)}
@@ -194,7 +196,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
   </div>
   <button class="screen" type="button" id="reel" aria-label="Showreel">
     <div class="lamp"></div>
-    <span class="playbadge" data-i="play_reel">Watch showreel</span>
+    <video class="reelvid" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/5c595b15-77c2-4bfb-bb3d-c50975f4b6dc.mp4" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/117ecec5-d88f-43ed-94b8-b0bc79121e48.jpg" muted loop playsinline autoplay preload="auto"></video>
   </button>
 </div>
 
@@ -332,7 +334,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
    video: "youtube:ID", "vimeo:ID" or a plain URL (opens in a new tab). Works without video are hidden.
    zone: ads | music | shorts.  kind: ai | live | hybrid.  The first work of the "ads" zone is shown big. */
 const CONFIG = {
-  showreel: "",
+  showreel: "https://d2ol7oe51mr4n9.cloudfront.net/user_3KHhEEl4bEE2S8xkgLDRo411TTk/5c595b15-77c2-4bfb-bb3d-c50975f4b6dc.mp4",
   film_trailer: "youtube:wGK0Ow47FN0",
   film_imdb: "https://www.imdb.com/title/tt43641009/",
   film_kp: "https://www.kinopoisk.ru/film/5426294/",
@@ -454,6 +456,7 @@ function renderNav(){
   });
 }
 const lb=document.getElementById("lb");
+{const rv=document.querySelector(".reelvid"); const show=()=>rv.classList.add("on"); rv.addEventListener("playing",show); setTimeout(show,2200);}
 function openVideo(v,title,tall){
   if(!v) return;
   const mp4=/\.mp4(\?|$)/.test(v);
@@ -471,7 +474,7 @@ lb.addEventListener("close",()=>{ lb.querySelector(".vid").innerHTML=""; unlock(
 lb.addEventListener("click",e=>{ if(!e.target.closest(".vid")) lb.close(); });
 
 document.getElementById("reel").onclick=()=>{
-  if(CONFIG.showreel) openVideo(CONFIG.showreel,"Showreel");
+  if(CONFIG.showreel) openVideo(CONFIG.showreel,"KRUTOV showreel");
   else document.getElementById("ai").scrollIntoView();
 };
 document.querySelectorAll("[data-slot]").forEach(a=>{const v=CONFIG[a.dataset.slot]; if(v) a.href=v; else a.hidden=true;});
