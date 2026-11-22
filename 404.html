@@ -6,12 +6,9 @@
 <meta name="robots" content="noindex">
 <script>
 // Старые ссылки (Tilda и любые несуществующие адреса) ведут на главную.
-// /ai и /ai/... — сразу к блоку «Реклама и AI-фильмы».
 (function(){
   var base = location.hostname.endsWith("github.io") ? "/krutovprod/" : "/";
-  var rest = location.pathname.slice(base.length - 1).toLowerCase();
-  var hash = /^\/ai(\/|$)/.test(rest) ? "#ads" : "";
-  location.replace(base + hash);
+  location.replace(base);
 })();
 </script>
 </head>
