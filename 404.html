@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>KRUTOV Production</title>
+<meta name="robots" content="noindex">
+<script>
+// Старые ссылки (Tilda и любые несуществующие адреса) ведут на главную.
+// /ai и /ai/... — сразу к блоку «Реклама и AI-фильмы».
+(function(){
+  var base = location.hostname.endsWith("github.io") ? "/krutovprod/" : "/";
+  var rest = location.pathname.slice(base.length - 1).toLowerCase();
+  var hash = /^\/ai(\/|$)/.test(rest) ? "#ads" : "";
+  location.replace(base + hash);
+})();
+</script>
+</head>
+<body style="background:#24090A;color:#EFE7DA;font:16px system-ui,sans-serif;padding:24px">
+<a href="/" style="color:#EFE7DA">KRUTOV Production →</a>
+</body>
+</html>

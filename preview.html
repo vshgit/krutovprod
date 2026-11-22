@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#1C0607">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap&subset=cyrillic" rel="stylesheet">
 <style>
 :root{
   --oxblood:#24090A; --oxblood-2:#341012; --safelight:#E3352C; --ember:#FF8A3D;
@@ -220,7 +220,7 @@ main{position:relative;overflow:clip}
 
 /* большая надпись внизу */
 .wordmark{font:800 clamp(80px,21vw,360px)/.9 var(--display);letter-spacing:-.04em;color:transparent;
-  -webkit-text-stroke:1.5px rgba(239,231,218,.62);white-space:nowrap;padding-left:calc(var(--pad) + .6vw);margin:0 calc(var(--pad)*-1) clamp(28px,4vw,56px);
+  -webkit-text-stroke:1.5px rgba(239,231,218,.62);white-space:nowrap;padding-left:calc(var(--pad) + .6vw);margin:56px calc(var(--pad)*-1) 0;
   user-select:none;text-shadow:0 0 40px rgba(227,53,44,.25)}
 @media (max-width:480px){.wordmark{-webkit-text-stroke-width:1px}}
 
@@ -231,12 +231,13 @@ main{position:relative;overflow:clip}
   .offer>div{align-self:start}
 }
 /* киноплёнка перед блоком Кино */
-.filmstrip{position:relative;z-index:1;margin:0 calc(var(--pad)*-1 - 6vw) clamp(48px,7vw,88px);transform:rotate(-2.2deg);
-  background:#0B0606;padding:10px 0;box-shadow:0 20px 60px -20px rgba(0,0,0,.8);opacity:.82}
-.filmstrip .holes{height:12px;background:repeating-linear-gradient(90deg,#2B1A17 0 18px,transparent 18px 34px);margin:0 0 8px}
-.filmstrip .holes+.frames+.holes{margin:8px 0 0}
-.filmstrip .frames{display:flex;gap:8px;overflow:hidden}
-.filmstrip img{flex:none;width:clamp(150px,17vw,250px);height:clamp(94px,10.6vw,156px);max-width:none;object-fit:cover;filter:saturate(.55) brightness(.62) sepia(.25);border-radius:2px}
+.filmstrip{position:relative;z-index:1;margin:0 calc(var(--pad)*-1 - 6vw) clamp(48px,7vw,88px);transform:rotate(-2deg);
+  background:#070404;padding:11px 0;display:flex;flex-direction:column;gap:10px;border-top:1px solid #1E1212;border-bottom:1px solid #1E1212;
+  box-shadow:0 18px 50px -18px rgba(0,0,0,.85)}
+.filmstrip .holes{height:13px;background:repeating-linear-gradient(90deg,#2A1A16 0 20px,transparent 20px 34px);opacity:.9}
+.filmstrip .edge{display:flex;gap:clamp(28px,4vw,56px);white-space:nowrap;overflow:hidden;padding-left:calc(var(--pad) + 8vw);
+  font:500 clamp(11px,.95vw,13px)/1 "IBM Plex Mono",ui-monospace,Menlo,monospace;letter-spacing:.16em;color:rgba(255,138,61,.72)}
+.filmstrip .edge .hl{color:rgba(255,217,188,.85)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 #cm{background:rgba(20,4,5,.88);color:var(--bone)}
 #cm .cmbox{position:relative;width:min(460px,92vw);background:var(--oxblood-2);border:1px solid var(--line);border-radius:20px;padding:26px 22px 22px;touch-action:auto;max-height:90dvh;overflow:auto}
@@ -363,9 +364,7 @@ main{position:relative;overflow:clip}
 
 <section class="zone" id="cinema">
   <i class="leak cold lk-cin" aria-hidden="true"></i><i class="leak lk-cin2 slow" aria-hidden="true"></i>
-  <div class="filmstrip" aria-hidden="true">
-    <div class="holes"></div><div class="frames"><img src="assets/kompromat.jpg" alt="" decoding="async"><img src="assets/vimeo-1180061445.jpg" alt="" decoding="async"><img src="assets/golden-hour.jpg" alt="" decoding="async"><img src="assets/vimeo-1180073199.jpg" alt="" decoding="async"><img src="assets/house-poster.jpg" alt="" decoding="async"><img src="assets/knife.jpg" alt="" decoding="async"><img src="assets/vimeo-1180079665.jpg" alt="" decoding="async"><img src="assets/ora.jpg" alt="" decoding="async"><img src="assets/vimeo-1182213203.jpg" alt="" decoding="async"><img src="assets/syndrome-poster.jpg" alt="" decoding="async"><img src="assets/showreel.jpg" alt="" decoding="async"><img src="assets/ny1.jpg" alt="" decoding="async"></div><div class="holes"></div>
-  </div>
+  <div class="filmstrip" aria-hidden="true"><div class="holes"></div><div class="edge"><span>KRUTOV 2026</span><span>▸ 23</span><span>▸ 23A</span><span class="hl">05 · КИНО</span><span>▸ 24</span><span>▸ 24A</span><span>▸ 25</span><span>KRUTOV 2026</span><span>▸ 25A</span><span>▸ 26</span><span class="hl">05 · FILM</span><span>▸ 26A</span><span>▸ 27</span></div><div class="holes"></div></div>
   <div class="zhead">
     <div><h2 data-i="z_cin">Film</h2><p data-i="cin_p">Where we come from: two features in Russian distribution and a handful of shorts.</p></div>
   </div>
@@ -405,7 +404,6 @@ main{position:relative;overflow:clip}
 
 <section class="zone contact" id="contact">
   <i class="leak lk-ct slow" aria-hidden="true"></i>
-  <div class="wordmark" aria-hidden="true">KRUTOV</div>
   <h2 data-i="ct_h">Tell us what you want to film</h2>
   <div class="channels">
     <a href="https://t.me/Fan_taz_er"><span>Telegram</span><b>@Fan_taz_er</b></a>
@@ -415,6 +413,7 @@ main{position:relative;overflow:clip}
     <a href="https://www.youtube.com/@krutovProd"><span>YouTube</span><b data-i="yt">@krutovProd</b></a>
   </div>
   <footer><span data-i="ft_where">Working remotely, worldwide</span><span>© 2026 KRUTOV Production</span></footer>
+  <div class="wordmark" aria-hidden="true">KRUTOV</div>
 </section>
 </main>
 
