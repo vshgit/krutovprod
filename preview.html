@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KRUTOV Production — AI video and film production</title>
+<meta name="description" content="Filmmakers behind two feature films, making AI commercials, music videos and holiday films for brands worldwide.">
+<meta property="og:title" content="KRUTOV Production">
+<meta property="og:description" content="Cinema-grade AI video for brands. Commercials, music videos, holiday films.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vshgit.github.io/krutovprod/">
+<meta property="og:image" content="https://vshgit.github.io/krutovprod/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://vshgit.github.io/krutovprod/assets/og.jpg">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#1C0607">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --oxblood:#24090A; --oxblood-2:#341012; --safelight:#E3352C; --ember:#FF8A3D;
+  --bone:#EFE7DA; --smoke:#A3918A; --line:rgba(239,231,218,.14);
+  --display:"Unbounded",system-ui,sans-serif; --body:"Onest",system-ui,sans-serif;
+  --pad:clamp(18px,4vw,56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{background:#1C0607;color:var(--bone);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.top{position:sticky;top:0;z-index:40;background:rgba(28,6,7,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:20px;padding:14px var(--pad)}
+.logo{font:800 15px/1 var(--display);text-decoration:none;margin-right:auto}
+.logo small{font:400 13px var(--body);color:var(--smoke);margin-left:6px}
+.zones{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.zones::-webkit-scrollbar{display:none}
+.zones a{flex:none;text-decoration:none;font-size:14px;color:var(--smoke);padding:7px 13px;border-radius:999px}
+.zones a:hover,.zones a.on{color:var(--bone);background:rgba(239,231,218,.08)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+.lang button{background:none;border:0;color:var(--smoke);font:500 13px var(--body);padding:6px 11px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--bone);color:var(--oxblood)}
+.zones.mob{display:none;padding:0 var(--pad) 10px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font:600 15px var(--body);padding:12px 20px;border-radius:999px;border:1px solid var(--bone);background:none;color:var(--bone);cursor:pointer;white-space:nowrap}
+.btn.solid{background:var(--bone);color:var(--oxblood)}
+.btn:hover{background:var(--safelight);border-color:var(--safelight);color:var(--bone)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+
+.hero{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(28px,5vw,72px) var(--pad) clamp(40px,6vw,88px)}
+h1{font:700 clamp(30px,4.6vw,68px)/1.06 var(--display);letter-spacing:-.025em;margin-bottom:18px}
+.lede{color:var(--smoke);max-width:44ch;margin-bottom:24px;font-size:17px}
+.lede strong{color:var(--bone);font-weight:500}
+.screen{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 0 110px -16px rgba(227,53,44,.5);border:0;width:100%;cursor:pointer;color:inherit}
+.lamp{position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 55%,rgba(255,138,61,.55),transparent 60%),radial-gradient(90% 120% at 50% 50%,var(--safelight),var(--oxblood) 75%);animation:lamp 2.2s ease-out both}
+@keyframes lamp{0%{opacity:0}30%{opacity:.6}38%{opacity:.25}55%{opacity:.9}100%{opacity:1}}
+.reelvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+.reelvid.on{opacity:1}
+.playbadge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--bone);color:var(--oxblood);font:600 15px var(--body);padding:13px 24px;border-radius:999px;white-space:nowrap}
+
+.chooser{padding:0 var(--pad)}
+.chooser h2{font:500 15px var(--body);color:var(--smoke);margin-bottom:12px}
+.pick{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.pick a{display:block;text-decoration:none;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--oxblood-2);min-height:128px}
+.pick a:hover{border-color:var(--safelight)}
+.pick b{display:block;font:700 clamp(17px,1.6vw,22px)/1.15 var(--display);margin-bottom:6px}
+.pick span{color:var(--smoke);font-size:14px;line-height:1.4;display:block}
+.pick a.season{border-color:rgba(255,138,61,.5)}
+.pick a.season b{color:var(--ember)}
+
+.zone{padding:clamp(64px,9vw,120px) var(--pad) 0}
+.zhead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.zhead h2{font:700 clamp(28px,3.6vw,48px)/1.05 var(--display);letter-spacing:-.02em;margin-bottom:8px}
+.zhead p{color:var(--smoke);max-width:52ch}
+.zone.season .zhead h2{color:var(--ember)}
+.zbody{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:start}
+.zbody.wide{display:block}
+.feature .frame{aspect-ratio:16/9}
+.row{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--oxblood-2) transparent}
+.row .card{scroll-snap-align:start;flex:0 0 min(300px,72vw)}
+.row .card.tall{flex:0 0 min(150px,36vw)}
+.card.tall h3{font-size:14px}
+.card.tall .frame{aspect-ratio:9/16}
+.zbody:not(.wide) .row{flex-direction:column;overflow:visible}
+.zbody:not(.wide) .row .card{flex:none;display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
+.zbody:not(.wide) .row .card h3{margin-top:0}
+.card{background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;width:100%}
+.frame{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:radial-gradient(80% 90% at 40% 40%,#5a1416,#2c0c0e)}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card:hover img{transform:scale(1.04)}
+.card:hover .frame{outline:1px solid var(--safelight)}
+.card.still{cursor:default}
+.card.still:hover img{transform:none}
+.card.still:hover .frame{outline:0}
+.card h3{font:500 16px/1.3 var(--body);margin-top:10px}
+.feature .card h3{font:600 20px/1.25 var(--display);margin-top:14px}
+.card p{color:var(--smoke);font-size:14px}
+.kind{position:absolute;left:10px;top:10px;font:600 12px var(--body);padding:4px 9px;border-radius:999px;background:rgba(36,9,10,.78);color:var(--bone)}
+.kind.ai{background:var(--safelight)}
+.more{color:var(--smoke);font-size:14px}
+
+.offers{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.offer{border:1px solid var(--line);border-radius:18px;padding:22px;background:var(--oxblood-2)}
+.offer h3{font:700 20px/1.2 var(--display);margin:18px 0 8px}
+.offer p{color:var(--smoke)}
+.demos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.demo{background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.demo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;border-radius:14px;border:1px solid var(--line)}
+.demo b{display:block;font:600 15px var(--body);margin-top:8px}
+.demo span{color:var(--smoke);font-size:13px}
+.nypair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.nyvid{position:relative;display:block;width:100%;aspect-ratio:4/5;border:0;padding:0;border-radius:14px;overflow:hidden;background:#1d0607;cursor:pointer}
+.nyvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.playbadge.small{top:auto;bottom:12px;transform:translateX(-50%);font-size:13px;padding:8px 14px}
+.idea{display:flex;align-items:flex-end;aspect-ratio:16/10;border-radius:14px;padding:20px;
+  background:radial-gradient(70% 80% at 70% 30%,rgba(255,138,61,.45),transparent 70%),radial-gradient(60% 70% at 20% 80%,rgba(227,53,44,.5),transparent 70%),#1d0607}
+.idea q{font:500 18px/1.4 var(--body);quotes:none;max-width:30ch}
+
+.features{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:32px}
+.film{display:grid;grid-template-columns:140px 1fr;gap:18px;border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--oxblood-2)}
+.poster{aspect-ratio:2/3;border-radius:10px;background:radial-gradient(70% 50% at 50% 35%,rgba(227,53,44,.55),transparent 70%),#140405;background-size:cover;background-position:center}
+.poster.syn{background:radial-gradient(70% 50% at 50% 35%,rgba(239,231,218,.3),transparent 70%),#1a1012}
+.film h3{font:700 18px/1.2 var(--display);margin-bottom:4px}
+.film .meta{color:var(--smoke);font-size:14px;margin-bottom:10px}
+.film .role{font-size:14px;margin-bottom:14px}
+.film .role span{color:var(--smoke)}
+.film .ctas .btn{padding:9px 15px;font-size:14px}
+.sub{font:600 15px var(--body);color:var(--smoke);margin-bottom:12px}
+
+.credits{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;text-align:center}
+.credits .role{color:var(--smoke);font-size:14px}
+.credits .name{font:700 clamp(20px,2.2vw,28px)/1.15 var(--display);margin:4px 0 6px}
+.credits .fx{color:var(--smoke);font-size:14px;max-width:34ch;margin:0 auto}
+
+.contact{padding-bottom:var(--pad)}
+.contact h2{font:700 clamp(32px,6vw,84px)/1 var(--display);letter-spacing:-.025em;max-width:14ch;margin-bottom:28px}
+.channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));border-top:1px solid var(--line)}
+.channels a{padding:18px 0;border-bottom:1px solid var(--line);text-decoration:none;display:block}
+.channels a span{display:block;color:var(--smoke);font-size:13px}
+.channels a b{font:500 18px var(--body)}
+.channels a:hover b{color:var(--safelight)}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--smoke);font-size:13px;padding-top:44px}
+
+dialog{border:0;padding:0;margin:0;position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;background:rgba(20,4,5,.95);overflow:hidden;overscroll-behavior:contain;touch-action:none}
+dialog[open]{display:flex;align-items:center;justify-content:center}
+dialog::backdrop{background:transparent}
+.lbin{width:min(1200px,92vw);touch-action:auto}
+dialog .vid{aspect-ratio:16/9;max-height:80vh;background:#000;border-radius:14px;overflow:hidden;margin:0 auto}
+dialog.tall .lbin{width:auto}
+dialog.tall .vid{aspect-ratio:9/16;height:min(82dvh,150vw);max-height:none}
+dialog iframe,dialog video{width:100%;height:100%;border:0;display:block}
+dialog .close{position:fixed;top:12px;right:12px;z-index:2;background:rgba(239,231,218,.12);border:0;border-radius:999px;color:var(--bone);cursor:pointer;padding:9px;line-height:0}
+dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align:center}
+
+@media (max-width:980px){
+  .bar .zones{display:none}
+  .zones.mob{display:flex}
+  .hero{grid-template-columns:1fr}
+  .hero .screen{order:-1}
+  .pick{grid-template-columns:1fr 1fr}
+  .pick a{min-height:0;padding:16px}
+  .pick a:last-child:nth-child(odd){grid-column:1/-1}
+  .zbody{grid-template-columns:1fr}
+  .zbody:not(.wide) .row{flex-direction:row;overflow-x:auto}
+  .zbody:not(.wide) .row .card{display:block;flex:0 0 min(260px,70vw)}
+  .zbody:not(.wide) .row .card h3{margin-top:10px}
+  .offers,.features{grid-template-columns:1fr}
+  .credits{grid-template-columns:1fr;gap:22px}
+}
+@media (max-width:480px){
+  .film{grid-template-columns:96px 1fr;gap:14px}
+  .pick b{font-size:16px}
+  .pick span{font-size:13px}
+  .zhead .btn{width:100%}
+}
+
+/* ---- Засветки плёнки (light leaks) ---- */
+main{position:relative;overflow:clip}
+.hero,.chooser,.zone{position:relative}
+.hero>*,.chooser>*,.zone>*:not(.leak){position:relative;z-index:1}
+.leak{--a:.4;--c:0;position:absolute;z-index:0;pointer-events:none;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,196,140,calc(var(--a)*.9 + var(--c))),rgba(255,138,61,calc(var(--a)*.8)) 30%,rgba(227,53,44,calc(var(--a)*.5)) 58%,rgba(227,53,44,0) 100%);
+  animation:breathe 11s ease-in-out infinite alternate}
+.leak.edge{background:radial-gradient(closest-side,rgba(255,206,150,calc(var(--a)*.9 + var(--c))),rgba(255,138,61,calc(var(--a)*.75)) 24%,rgba(227,53,44,calc(var(--a)*.45)) 55%,rgba(227,53,44,0) 100%)}
+.leak.cold{background:radial-gradient(closest-side,rgba(239,231,218,var(--a)),rgba(239,231,218,calc(var(--a)*.35)) 45%,rgba(239,231,218,0) 100%)}
+.leak.slow{animation-duration:17s;animation-delay:-6s}
+@keyframes breathe{0%{opacity:.72;transform:translate3d(0,0,0) scale(1)}100%{opacity:1;transform:translate3d(-2%,1.5%,0) scale(1.06)}}
+.lk-hero{--a:.5;--c:.28;top:-220px;right:-22vw;width:min(70vw,900px);height:560px}
+.lk-hero2{--a:.22;bottom:-120px;left:-18vw;width:46vw;height:420px}
+.lk-pick{--a:.34;--c:.12;top:10%;left:-14vw;width:min(34vw,420px);height:640px}
+.lk-ads{--a:.26;bottom:-160px;left:30%;width:60vw;height:420px}
+.lk-hol{--a:.62;--c:.38;top:-300px;right:-24vw;width:min(80vw,1100px);height:720px}
+.lk-hol2{--a:.2;bottom:-80px;left:-10vw;width:40vw;height:360px}
+.lk-soc{--a:.22;bottom:-220px;left:-16vw;width:56vw;height:520px}
+.lk-mus{--a:.46;--c:.22;top:8%;right:-9vw;width:min(24vw,320px);height:760px}
+.lk-cin{--a:.1;top:-180px;left:25%;width:56vw;height:520px}
+.lk-cin2{--a:.3;bottom:-120px;right:-14vw;width:40vw;height:420px}
+.lk-team{--a:.16;top:20%;left:20%;width:60vw;height:360px}
+.lk-ct{--a:.52;--c:.2;bottom:-280px;left:6%;width:88vw;height:640px}
+/* свет за элементами, как за шоурилом */
+.screen{box-shadow:0 0 160px -8px rgba(227,53,44,.55),0 0 60px -18px rgba(255,138,61,.6)}
+.feature .frame{box-shadow:0 0 120px -18px rgba(227,53,44,.55),0 0 40px -16px rgba(255,138,61,.45)}
+.offer{box-shadow:0 0 110px -36px rgba(255,138,61,.55)}
+.nyvid{box-shadow:0 0 60px -14px rgba(255,138,61,.55)}
+.poster{box-shadow:0 0 70px -14px rgba(227,53,44,.6)}
+.poster.syn{box-shadow:0 0 70px -14px rgba(239,231,218,.28)}
+.card.tall .frame{box-shadow:0 0 44px -16px rgba(227,53,44,.6)}
+.pick a.season{box-shadow:0 0 60px -24px rgba(255,138,61,.6)}
+.contact h2{text-shadow:0 0 60px rgba(227,53,44,.45)}
+@media (max-width:980px){.lk-mus{width:40vw;height:520px}.lk-hol{height:520px}.lk-ct{height:460px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+#cm{background:rgba(20,4,5,.88);color:var(--bone)}
+#cm .cmbox{position:relative;width:min(460px,92vw);background:var(--oxblood-2);border:1px solid var(--line);border-radius:20px;padding:26px 22px 22px;touch-action:auto;max-height:90dvh;overflow:auto}
+#cm h2{font:700 22px/1.2 var(--display);margin:0 40px 18px 0;color:var(--bone)}
+.cmnote{color:var(--smoke);font-size:14px;margin-bottom:18px}
+.cmx{position:absolute;top:12px;right:12px;background:none;border:0;color:var(--smoke);cursor:pointer;padding:6px;line-height:0}
+.cmx:hover{color:var(--bone)}
+.cmopts{display:grid;gap:10px}
+.cmopt{display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:var(--oxblood);border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:var(--bone);cursor:pointer;font:inherit}
+.cmopt:hover{border-color:var(--safelight)}
+.cmopt b{display:block;font:600 17px var(--body);color:var(--bone)}
+.cmi{flex:none;width:28px;height:28px;color:var(--bone)}
+.cmopt:hover .cmi{color:var(--safelight)}
+.cmopt span{display:block;color:var(--smoke);font-size:13px;line-height:1.35;margin-top:2px}
+.cmmsg{margin-top:14px;font-size:14px;color:var(--ember);min-height:1em}
+#cm form label{display:block;margin-bottom:12px}
+#cm form label span{display:block;font-size:13px;color:var(--smoke);margin-bottom:4px}
+#cm input,#cm textarea{width:100%;background:var(--oxblood);border:1px solid var(--line);border-radius:10px;color:var(--bone);font:400 16px var(--body);padding:10px 12px}
+#cm input:focus,#cm textarea:focus{outline:2px solid var(--safelight);outline-offset:1px}
+#cm .hp{position:absolute;left:-9999px;width:1px;height:1px}
+.cmstatus{margin-top:12px;font-size:14px;min-height:1em}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="bar">
+    <a class="logo" href="#top">KRUTOV<small>production</small></a>
+    <nav class="zones" aria-label="Sections"></nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    </div>
+  </div>
+  <nav class="zones mob" aria-label="Sections"></nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <i class="leak lk-hero" aria-hidden="true"></i><i class="leak lk-hero2 slow" aria-hidden="true"></i>
+  <div>
+    <h1 data-i="h1">Cinema-grade AI video for brands</h1>
+    <p class="lede" data-i="lede"><strong>The team behind two feature films.</strong> We make commercials, music videos and holiday films with AI, and pick up a real camera when the story needs it.</p>
+    <div class="ctas">
+      <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="cta_talk" data-topic="general">Discuss a project</a>
+    </div>
+  </div>
+  <button class="screen" type="button" id="reel" aria-label="Showreel">
+    <div class="lamp"></div>
+    <video class="reelvid" src="assets/showreel.mp4" poster="assets/showreel.jpg" muted loop playsinline autoplay preload="auto"></video>
+  </button>
+</div>
+
+<section class="chooser" aria-labelledby="pick-h">
+  <i class="leak edge lk-pick slow" aria-hidden="true"></i>
+  <h2 id="pick-h" data-i="pick_h">What do you need?</h2>
+  <div class="pick">
+    <a href="#ads"><b data-i="z_ads">Commercials</b><span data-i="z_ads_s">Product and brand films, mostly made with AI</span></a>
+    <a href="#holiday" class="season"><b data-i="z_hol">New Year</b><span data-i="z_hol_s">Corporate greetings and interactive cards</span></a>
+    <a href="#social"><b data-i="z_soc">Social media</b><span data-i="z_soc_s">Vertical series and reels</span></a>
+    <a href="#music"><b data-i="z_mus">Music videos</b><span data-i="z_mus_s">Live action, AI or both</span></a>
+    <a href="#cinema"><b data-i="z_cin">Film</b><span data-i="z_cin_s">Features and shorts</span></a>
+  </div>
+</section>
+
+<section class="zone" id="ads">
+  <i class="leak lk-ads slow" aria-hidden="true"></i>
+  <div class="zhead">
+    <div><h2 data-i="ads_h">Commercials &amp; AI films</h2><p data-i="ads_p">Brand films from script to final grade, plus trailers, animation and story scenes. With AI it costs a fraction of a shoot and is ready in weeks, not months.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="ads_cta" data-topic="ads">Order a commercial</a>
+  </div>
+  <div class="zbody wide" data-zone="ads"></div>
+</section>
+
+<section class="zone season" id="holiday">
+  <i class="leak lk-hol" aria-hidden="true"></i><i class="leak lk-hol2 slow" aria-hidden="true"></i>
+  <div class="zhead">
+    <div><h2 data-i="z_hol">New Year</h2><p data-i="hol_p">Two ways to greet your clients and team this year. Both are made in your brand style.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="hol_cta" data-topic="holiday">Book a New Year project</a>
+  </div>
+  <div class="offers">
+    <div class="offer">
+      <div class="nypair">
+        <button class="nyvid" type="button" data-full="assets/ny1-full.mp4" aria-label="New Year film 1">
+          <video src="assets/ny1-preview.mp4" poster="assets/ny1.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <span class="playbadge small" data-i="ny_play">Watch</span>
+        </button>
+        <button class="nyvid" type="button" data-full="assets/ny2-full.mp4" aria-label="New Year film 2">
+          <video src="assets/ny2-preview.mp4" poster="assets/ny2.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <span class="playbadge small" data-i="ny_play">Watch</span>
+        </button>
+      </div>
+      <h3 data-i="hol1_h">Corporate video greeting</h3>
+      <p data-i="hol1_p">A short film for clients, partners or the team, like these two. We write the idea, you approve it, AI makes it look like a movie.</p>
+    </div>
+    <div class="offer">
+      <div class="demos">
+        <button class="demo" type="button" data-demo="https://vshgit.github.io/snow-globe/"><img src="assets/snow-globe.jpg" alt="" loading="lazy"><b>Snow Globe</b><span data-i="demo1">Shake the phone</span></button>
+        <button class="demo" type="button" data-demo="https://vshgit.github.io/sand/"><img src="assets/sand.jpg" alt="" loading="lazy"><b>Sand</b><span data-i="demo2">Draw with a finger</span></button>
+      </div>
+      <h3 data-i="hol2_h">Interactive card</h3>
+      <p data-i="hol2_p">A small world clients can touch, right in a phone browser: your office inside a snow globe, your logo in the sand. Tap one to try.</p>
+    </div>
+  </div>
+</section>
+
+<section class="zone" id="social">
+  <i class="leak lk-soc" aria-hidden="true"></i>
+  <div class="zhead">
+    <div><h2 data-i="z_soc">Social media</h2><p data-i="soc_p">Vertical stories and series for Instagram, TikTok and Shorts: comedy sketches with recurring characters or an educational series like the one about Allenberg and the east of the Kaliningrad region.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="soc_cta" data-topic="social">Order a series</a>
+  </div>
+  <div class="zbody wide" data-zone="vertical"></div>
+</section>
+
+<section class="zone" id="music">
+  <i class="leak edge lk-mus slow" aria-hidden="true"></i>
+  <div class="zhead">
+    <div><h2 data-i="z_mus">Music videos</h2><p data-i="mus_p">We have made a lot of them: live action, AI and hybrids. Swipe through and pick a mood.</p></div>
+    <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="mus_cta" data-topic="music">Order a music video</a>
+  </div>
+  <div class="zbody wide" data-zone="music"></div>
+</section>
+
+<section class="zone" id="cinema">
+  <i class="leak cold lk-cin" aria-hidden="true"></i><i class="leak lk-cin2 slow" aria-hidden="true"></i>
+  <div class="zhead">
+    <div><h2 data-i="z_cin">Film</h2><p data-i="cin_p">Where we come from: two features in Russian distribution and a handful of shorts.</p></div>
+  </div>
+  <div class="features">
+    <div class="film">
+      <div class="poster" id="poster"></div>
+      <div>
+        <h3 data-i="f1_h">The House Where People Don’t Live</h3>
+        <p class="meta" data-i="f1_m">Horror, 2024. Our production.</p>
+        <p class="role" data-i="f1_r"><span>Written by</span> Dmitry Krutov. <span>Produced by</span> Varvara and Dmitry Krutov. <span>Directed by</span> Vyacheslav Rudenko.</p>
+        <div class="ctas"><button class="btn solid" type="button" data-play="film_trailer" data-i="trailer">Trailer</button><a class="btn" href="#" data-slot="film_imdb">IMDb</a><a class="btn" href="#" data-slot="film_kp" data-i="kp">Kinopoisk</a></div>
+      </div>
+    </div>
+    <div class="film">
+      <div class="poster syn" id="synposter"></div>
+      <div>
+        <h3 data-i="f2_h">Syndrome</h3>
+        <p class="meta" data-i="f2_m">Mystery thriller, 2022.</p>
+        <p class="role" data-i="f2_r"><span>Directed by</span> Vyacheslav Rudenko. <span>Assistant producer and assistant director</span> Varvara Krutova.</p>
+        <div class="ctas"><button class="btn solid" type="button" data-play="syn_trailer" data-i="trailer">Trailer</button><a class="btn" href="#" data-slot="syn_kp" data-i="kp">Kinopoisk</a></div>
+      </div>
+    </div>
+  </div>
+  <p class="sub" data-i="shorts_h">Short films</p>
+  <div class="zbody wide" data-zone="shorts"></div>
+</section>
+
+<section class="zone" id="team">
+  <i class="leak lk-team" aria-hidden="true"></i>
+  <div class="zhead"><div><h2 data-i="team_h">Credits</h2></div></div>
+  <div class="credits">
+    <div><p class="role" data-i="r1">Writer, producer</p><p class="name" data-i="n1">Dmitry Krutov</p><p class="fx" data-i="x1">Writes every script we make and talks to every client.</p></div>
+    <div><p class="role" data-i="r2">Producer, AI director</p><p class="name" data-i="n2">Varvara Krutova</p><p class="fx" data-i="x2">Turns scripts into finished films with generative tools. Mathematician by training.</p></div>
+    <div><p class="role" data-i="r3">Director</p><p class="name" data-i="n3">Vyacheslav Rudenko</p><p class="fx" data-i="x3">Directed both our features. Leads live-action shoots.</p></div>
+  </div>
+</section>
+
+<section class="zone contact" id="contact">
+  <i class="leak lk-ct slow" aria-hidden="true"></i>
+  <h2 data-i="ct_h">Tell us what you want to film</h2>
+  <div class="channels">
+    <a href="https://t.me/Fan_taz_er"><span>Telegram</span><b>@Fan_taz_er</b></a>
+    <a href="https://wa.me/77775755013"><span>WhatsApp</span><b>+7 777 575-50-13</b></a>
+    <a href="mailto:krutovscript@gmail.com?subject=Video%20project"><span>Email</span><b>krutovscript@gmail.com</b></a>
+    <a href="https://instagram.com/krutovprod_ai"><span>Instagram</span><b>@krutovprod_ai</b></a>
+    <a href="https://www.youtube.com/@krutovProd"><span>YouTube</span><b data-i="yt">@krutovProd</b></a>
+  </div>
+  <footer><span data-i="ft_where">Working remotely, worldwide</span><span>© 2026 KRUTOV Production</span></footer>
+</section>
+</main>
+
+<dialog id="cm" aria-labelledby="cm-h">
+  <div class="cmbox">
+    <button class="cmx" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <div class="cmstep" data-step="pick">
+      <h2 id="cm-h" data-i="cm_h">How would you like to reach us?</h2>
+      <div class="cmopts">
+        <button type="button" class="cmopt" data-ch="tg"><svg class="cmi" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.3 3.6 2.9 10.7c-1.1.4-1 1.9.1 2.2l4.6 1.4 1.8 5.5c.3.9 1.4 1.2 2.1.5l2.6-2.6 4.8 3.5c.8.6 2 .1 2.2-.9l3.1-14.5c.2-1-.8-1.8-1.9-1.4Zm-11.5 11 8.3-7.4-6.6 8.3-.3 3-1.4-3.9Z"/></svg><div><b>Telegram</b></div></button>
+        <button type="button" class="cmopt" data-ch="wa"><svg class="cmi" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M12 2.8a9.2 9.2 0 0 0-7.9 13.9L2.9 21.2l4.6-1.2A9.2 9.2 0 1 0 12 2.8Z"/><path fill="currentColor" d="M8.7 7.4c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.5.7c-.2.2-.2.4 0 .6.6 1 1.5 1.9 2.5 2.4.3.2.5.1.6-.1l.7-.8c.2-.2.4-.3.6-.2l1.9.9c.3.1.4.2.4.5 0 .5-.2 1.3-.9 1.8-.7.5-1.7.6-3.1 0-2.4-.9-3.9-3.2-4.2-3.6-.3-.4-1-1.5-1-2.8 0-.9.4-1.5.6-1.8Z"/></svg><div><b>WhatsApp</b></div></button>
+        <button type="button" class="cmopt" data-ch="form"><svg class="cmi" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M4 5.5h16v13H4z M4 6.5l8 6 8-6"/></svg><div><b data-i="cm_form_b">Leave your contacts</b><span data-i="cm_form">We will get back to you ourselves</span></div></button>
+      </div>
+      <p class="cmmsg"></p>
+    </div>
+    <form class="cmstep" data-step="form" hidden>
+      <h2 data-i="f_h">Leave your contacts</h2>
+      <label><span data-i="f_name">Name</span><input name="name" required autocomplete="name"></label>
+      <label><span data-i="f_contact">Phone, Telegram or email</span><input name="contact" required></label>
+      <label><span data-i="f_msg">What would you like to make?</span><textarea name="message" rows="3"></textarea></label>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+      <button class="btn solid" type="submit" data-i="f_send">Send request</button>
+      <p class="cmstatus" role="status"></p>
+    </form>
+  </div>
+</dialog>
+
+<dialog id="lb">
+  <button class="close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  <div class="lbin"><div class="vid"></div><h3></h3></div>
+</dialog>
+
+<script>
+/* ===== Content =====
+   video: "youtube:ID", "vimeo:ID" or a plain URL (opens in a new tab). Works without video are hidden.
+   zone: ads | music | shorts.  kind: ai | live | hybrid.  The first work of the "ads" zone is shown big. */
+const CONFIG = {
+  showreel: "assets/showreel.mp4",
+  film_trailer: "youtube:wGK0Ow47FN0",
+  film_imdb: "https://www.imdb.com/title/tt43641009/",
+  film_kp: "https://www.kinopoisk.ru/film/5426294/",
+  film_poster: "assets/house-poster.jpg",
+  syn_trailer: "youtube:VN2jBJQ-BWI",
+  ny_full: "assets/ny1-full.mp4",
+  syn_kp: "https://www.kinopoisk.ru/film/1431128/",
+  syn_poster: "assets/syndrome-poster.jpg"
+};
+const WORKS = [
+  {zone:"ads", kind:"ai", en:"Vantér knife", ru:"Нож Vantér", den:"AI product commercial, 15 sec", dru:"AI-реклама продукта, 15 сек", video:"assets/knife.mp4", poster:"assets/knife.jpg"},
+  {zone:"ads", kind:"ai", en:"ORA perfume", ru:"Духи ORA", den:"AI perfume commercial, 15 sec", dru:"AI-реклама парфюма, 15 сек", video:"assets/ora.mp4", poster:"assets/ora.jpg"},
+  {zone:"ads", kind:"ai", en:"Natural Intelligence", ru:"Естественный интеллект", den:"Trailer for a film that doesn't exist", dru:"Трейлер несуществующего фильма", video:"vimeo:1180073199", poster:"assets/vimeo-1180073199.jpg"},
+  {zone:"ads", kind:"ai", en:"Loyal Club", ru:"Loyal Club", den:"Commercial for a business loyalty service", dru:"Реклама сервиса лояльности для бизнеса", video:"youtube:AzCDA4pJSSE"},
+  {zone:"ads", kind:"live", en:"BeFree", ru:"BeFree", den:"Commercial", dru:"Рекламный ролик", video:"youtube:cqMoQ9QGIc0"},
+  {zone:"ads", kind:"ai", en:"Cosmo Café", ru:"Космо-Кафе", den:"Animated short, idea to final cut", dru:"Мультфильм от идеи до финала", video:"vimeo:1180079665", poster:"assets/vimeo-1180079665.jpg"},
+  {zone:"ads", kind:"ai", en:"Pippin", ru:"Pippin", den:"Commercial for a fictional garden-hose brand", dru:"Реклама для вымышленного бренда садовых шлангов", video:"vimeo:1180061445", poster:"assets/vimeo-1180061445.jpg"},
+  {zone:"ads", kind:"ai", en:"The Girl in the Silent House", ru:"Девушка в тихом доме", den:"Horror scene", dru:"Хоррор-сцена", video:"vimeo:1182213203", poster:"assets/vimeo-1182213203.jpg"},
+  {zone:"ads", kind:"live", en:"Tom Ford", ru:"Tom Ford", den:"Commercial", dru:"Рекламный ролик", video:"youtube:Nt9WNHWFKZ8"},
+  {zone:"vertical", kind:"ai", tall:1, en:"Mia", ru:"Мия", den:"Short comedy story", dru:"Короткая комедийная история", video:"assets/mia.mp4", poster:"assets/mia.jpg"},
+  {zone:"vertical", kind:"ai", tall:1, en:"Znamensk, the city of a thousand roses", ru:"Знаменск — город тысячи роз", den:"Reel", dru:"Рилс", video:"assets/znamensk-roses.mp4", poster:"assets/znamensk-roses.jpg"},
+  {zone:"vertical", kind:"ai", tall:1, en:"Allenberg: a revolution in 19th-century psychiatry", ru:"Алленберг. Революция в психиатрии XIX века", den:"Reel", dru:"Рилс", video:"assets/allenberg-psychiatry.mp4", poster:"assets/allenberg-psychiatry.jpg"},
+  {zone:"vertical", kind:"ai", tall:1, en:"The stubborn bridge", ru:"«Упрямый» мост", den:"Reel", dru:"Рилс", video:"assets/stubborn-bridge.mp4", poster:"assets/stubborn-bridge.jpg"},
+  {zone:"vertical", kind:"ai", tall:1, en:"Across the east of the region", ru:"Путешествие по востоку области", den:"Reel", dru:"Рилс", video:"assets/east-region.mp4", poster:"assets/east-region.jpg"},
+  {zone:"music", kind:"live", en:"Blonde and Bond — Между строк", ru:"Blonde and Bond — Между строк", den:"Music video", dru:"Клип", video:"youtube:JPB4Xb7iGJg"},
+  {zone:"music", kind:"ai", en:"Golden Hour", ru:"Golden Hour", den:"AI music video", dru:"AI-клип", video:"assets/golden-hour.mp4", poster:"assets/golden-hour.jpg"},
+  {zone:"music", kind:"live", en:"VARYA — Вдохни меня", ru:"VARYA — Вдохни меня", den:"Music video", dru:"Клип", video:"youtube:UsA2cNBQC3g"},
+  {zone:"music", kind:"live", en:"Moqumentary — Faceless", ru:"Moqumentary — Faceless", den:"Music video", dru:"Клип", video:"youtube:DYQnDJxQIz4"},
+  {zone:"music", kind:"live", en:"VARYA — Моё тело", ru:"VARYA — Моё тело", den:"Music video", dru:"Клип", video:"youtube:Rjbsop-MShc"},
+  {zone:"music", kind:"live", en:"Бриджи — Паранормальные", ru:"Бриджи — Паранормальные", den:"Music video", dru:"Клип", video:"youtube:rTm1Zn56cuM"},
+  {zone:"music", kind:"live", en:"Imortelle — Void", ru:"Imortelle — Void", den:"Music video", dru:"Клип", video:"youtube:mNvPCgVb1kw"},
+  {zone:"music", kind:"live", en:"Britva Oma — Проблески тебя", ru:"Britva Oma — Проблески тебя", den:"Music video", dru:"Клип", video:"youtube:A1N_RL1pG08"},
+  {zone:"shorts", still:1, kind:"live", en:"The Red Door", ru:"Красная дверь", den:"Short film", dru:"Короткий метр", video:"youtube:WeyQ_Dv2nI4"},
+  {zone:"shorts", still:1, kind:"live", en:"Butterfly", ru:"Бабочка", den:"Short film", dru:"Короткий метр", video:"youtube:T68mJPDFBxg"},
+  {zone:"shorts", still:1, kind:"live", en:"Gaze", ru:"Взор", den:"Short film", dru:"Короткий метр", video:"youtube:l4x9wgIkPjg"},
+  {zone:"shorts", still:1, kind:"live", en:"Kompromat", ru:"Компромат", den:"Short film", dru:"Короткий метр", video:"https://disk.yandex.ru/i/og7ZmlcTDaB-Lw", poster:"assets/kompromat.jpg"}
+];
+const NAV = [["ads","Commercials","Реклама"],["holiday","New Year","Новый год"],["social","Social","Соцсети"],["music","Music videos","Клипы"],["cinema","Film","Кино"],["team","Team","Команда"],["contact","Contact","Контакты"]];
+const KIND = {ai:["AI","AI"], live:["Live action","Съёмка"], hybrid:["Hybrid","Гибрид"]};
+
+const RU = {
+  h1:"AI-видео кинокачества для брендов",
+  lede:"<strong>Команда, за которой два полнометражных фильма.</strong> Делаем рекламу, клипы и новогодние ролики с помощью AI и берём настоящую камеру, когда этого требует история.",
+  cta_talk:"Обсудить проект", cta_work:"Смотреть работы", play_reel:"Смотреть шоурил",
+  pick_h:"Что вам нужно?",
+  z_ads:"Реклама", z_ads_s:"Продуктовые и имиджевые ролики, в основном с AI",
+  z_hol:"Новый год", z_hol_s:"Корпоративные поздравления и интерактивные открытки",
+  z_mus:"Клипы", z_mus_s:"Съёмка, AI или всё вместе",
+  z_cin:"Кино", z_cin_s:"Полный метр и короткий метр",
+  ads_h:"Реклама и AI-фильмы",
+  ads_p:"Ролики для брендов от сценария до цветокоррекции, а ещё трейлеры, анимация и сюжетные сцены. С AI это стоит в разы меньше съёмки и готово за недели, а не месяцы.",
+  ads_cta:"Заказать рекламу",
+  hol_p:"Два способа поздравить клиентов и команду в этом году. Оба делаем в стиле вашего бренда.",
+  hol_cta:"Заказать к Новому году",
+  ny_play:"Смотреть",
+  hol1_h:"Корпоративное видеопоздравление", hol1_p:"Короткий фильм для клиентов, партнёров или команды, как эти два. Мы придумываем идею, вы утверждаете, AI делает так, чтобы это выглядело как кино.",
+  hol2_h:"Интерактивная открытка", hol2_p:"Маленький мир, который можно потрогать прямо в браузере телефона: ваш офис внутри снежного шара, ваш логотип на песке. Нажмите, чтобы попробовать.",
+  demo1:"Встряхните телефон", demo2:"Рисуйте пальцем",
+  mus_p:"Мы сняли их много: живая съёмка, AI и гибриды. Листайте и выбирайте настроение.", mus_cta:"Заказать клип",
+  cin_p:"Откуда мы пришли: два полнометражных фильма в российском прокате и несколько короткометражек.",
+  f1_h:"Дом, в котором люди не живут", f1_m:"Хоррор, 2024. Наш продакшн.",
+  f1_r:"<span>Сценарий</span> Дмитрий Крутов. <span>Продюсеры</span> Варвара и Дмитрий Крутовы. <span>Режиссёр</span> Вячеслав Руденко.",
+  f2_h:"Синдром", f2_m:"Мистический триллер, 2022.",
+  f2_r:"<span>Режиссёр</span> Вячеслав Руденко. <span>Ассистент продюсера и режиссёра</span> Варвара Крутова.",
+  trailer:"Трейлер", kp:"Кинопоиск", shorts_h:"Короткий метр", z_soc:"Соцсети", z_soc_s:"Вертикальные серии и рилсы", soc_cta:"Заказать серию",
+  soc_p:"Вертикальные истории и серии для Instagram, TikTok и Shorts: смешные скетчи с постоянными героями или познавательный цикл, как об Алленберге и востоке Калининградской области.",
+  z_ai:"AI-фильмы", z_ai_s:"Трейлеры, мультфильмы, сцены", ai_p:"Трейлеры, анимация и сцены, целиком сделанные с AI, но написанные и снятые как настоящее кино.", ai_cta:"Заказать AI-фильм",
+  team_h:"Титры",
+  r1:"Сценарист, продюсер", n1:"Дмитрий Крутов", x1:"Пишет сценарии всех наших проектов и общается с каждым клиентом.",
+  r2:"Продюсер, AI-режиссёр", n2:"Варвара Крутова", x2:"Превращает сценарии в готовые фильмы с помощью генеративных инструментов. Математик по образованию.",
+  r3:"Режиссёр", n3:"Вячеслав Руденко", x3:"Режиссёр обоих наших полнометражных фильмов. Ведёт живые съёмки.",
+  cm_h:"Как вам удобнее связаться?",
+  cm_form_b:"Оставить контакты", cm_form:"Мы сами свяжемся с вами",
+  f_h:"Оставьте контакты", f_name:"Имя", f_contact:"Телефон, Telegram или почта", f_msg:"Что хотите снять?", f_send:"Отправить заявку",
+  ct_h:"Расскажите, что хотите снять", yt:"@krutovProd", ft_where:"Работаем удалённо по всему миру", close:"Закрыть"
+};
+const EN = {};
+document.querySelectorAll("[data-i]").forEach(el=>EN[el.dataset.i]=el.innerHTML);
+
+let lang="en";
+try{ lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("kp_lang") || (navigator.language||"").slice(0,2) }catch(e){}
+if(lang!=="ru") lang="en";
+const L=(en,ru)=>lang==="ru"?ru:en;
+
+function embed(v){
+  const [k,id]=v.split(":");
+  if(k==="vimeo") return `https://player.vimeo.com/video/${id}?autoplay=1`;
+  if(k==="youtube") return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+  return v;
+}
+function card(w){
+  const yt=w.video.startsWith("youtube:")?w.video.slice(8):"";
+  const b=document.createElement(w.still?"div":"button"); if(!w.still) b.type="button"; b.className="card"+(w.still?" still":"");
+  const fr=document.createElement("div"); fr.className="frame";
+  const vm=w.video.startsWith("vimeo:")?w.video.slice(6):"";
+  const src=w.poster||(yt?`https://i.ytimg.com/vi/${yt}/maxresdefault.jpg`:vm?`https://vumbnail.com/${vm}_large.jpg`:"");
+  if(src){
+    const im=new Image(); im.alt=""; im.loading="lazy"; im.src=src;
+    im.onload=()=>{ if(im.naturalWidth<200 && yt && !im.dataset.fb){ im.dataset.fb=1; im.src=`https://i.ytimg.com/vi/${yt}/hqdefault.jpg`; } };
+    im.onerror=()=>{ if(yt && !im.dataset.fb){ im.dataset.fb=1; im.src=`https://i.ytimg.com/vi/${yt}/hqdefault.jpg`; } else im.remove(); };
+    fr.append(im);
+  }
+  if(w.kind){ const k=document.createElement("span"); k.className="kind "+w.kind; k.textContent=L(...KIND[w.kind]); fr.append(k); }
+  const t=document.createElement("div"); t.innerHTML=`<h3>${L(w.en,w.ru)}</h3><p>${L(w.den,w.dru)}</p>`;
+  b.append(fr,t);
+  if(w.tall) b.classList.add("tall");
+  if(!w.still) b.onclick=()=>openVideo(w.video,L(w.en,w.ru),!!w.tall);
+  return b;
+}
+function renderZones(){
+  document.querySelectorAll("[data-zone]").forEach(z=>{
+    const list=WORKS.filter(w=>w.zone===z.dataset.zone && w.video);
+    z.innerHTML="";
+    if(!list.length){ z.innerHTML=`<p class="more">${L("New work is on its way.","Скоро здесь появятся работы.")}</p>`; return; }
+    const r=document.createElement("div"); r.className="row";
+    if(!z.classList.contains("wide")){
+      const f=document.createElement("div"); f.className="feature"; f.append(card(list[0])); z.append(f);
+      list.slice(1).forEach(w=>r.append(card(w)));
+    } else list.forEach(w=>r.append(card(w)));
+    if(r.children.length) z.append(r);
+  });
+}
+function renderNav(){
+  document.querySelectorAll(".zones").forEach(n=>{
+    n.innerHTML=NAV.map(([id,en,ru])=>`<a href="#${id}">${L(en,ru)}</a>`).join("");
+  });
+}
+const lb=document.getElementById("lb");
+{const rv=document.querySelector(".reelvid"); const show=()=>rv.classList.add("on"); rv.addEventListener("playing",show); setTimeout(show,2200);}
+function openVideo(v,title,tall){
+  if(!v) return;
+  const mp4=/\.mp4(\?|$)/.test(v);
+  if(!/^(youtube|vimeo):/.test(v) && !tall && !mp4){ window.open(v,"_blank","noopener"); return; }
+  lb.classList.toggle("tall",!!tall);
+  if(mp4){ lb.querySelector(".vid").innerHTML=`<video src="${v}" controls autoplay playsinline style="width:100%;height:100%;object-fit:contain;background:#000"></video>`; lb.querySelector("h3").textContent=title; lock(); lb.showModal(); return; }
+  lb.querySelector(".vid").innerHTML=`<iframe src="${embed(v)}" allow="autoplay; fullscreen; picture-in-picture; accelerometer; gyroscope" allowfullscreen title="${title}"></iframe>`;
+  lb.querySelector("h3").textContent=title; lock(); lb.showModal();
+}
+let lockY=0;
+function lock(){ lockY=window.scrollY; const b=document.body.style; b.position="fixed"; b.top=`-${lockY}px`; b.left="0"; b.right="0"; }
+function unlock(){ const b=document.body.style; b.position=b.top=b.left=b.right=""; const h=document.documentElement; const sb=h.style.scrollBehavior; h.style.scrollBehavior="auto"; window.scrollTo(0,lockY); h.style.scrollBehavior=sb; }
+lb.querySelector(".close").onclick=()=>lb.close();
+lb.addEventListener("close",()=>{ lb.querySelector(".vid").innerHTML=""; unlock(); });
+lb.addEventListener("click",e=>{ if(!e.target.closest(".vid")) lb.close(); });
+
+document.getElementById("reel").onclick=()=>{
+  if(CONFIG.showreel) openVideo(CONFIG.showreel,"KRUTOV showreel");
+  else document.getElementById("ai").scrollIntoView();
+};
+document.querySelectorAll("[data-slot]").forEach(a=>{const v=CONFIG[a.dataset.slot]; if(v) a.href=v; else a.hidden=true;});
+document.querySelectorAll("[data-play]").forEach(b=>{
+  const v=CONFIG[b.dataset.play]; if(!v){b.hidden=true;return}
+  b.onclick=()=>openVideo(v,b.closest(".film").querySelector("h3").textContent);
+});
+document.querySelectorAll(".nyvid").forEach(b=>b.onclick=()=>openVideo(b.dataset.full,L("New Year film","Новогодний ролик"),true));
+document.querySelectorAll("[data-demo]").forEach(b=>b.onclick=()=>openVideo(b.dataset.demo,b.querySelector("b").textContent,true));
+if(CONFIG.film_poster) document.getElementById("poster").style.backgroundImage=`url(${CONFIG.film_poster})`;
+if(CONFIG.syn_poster) document.getElementById("synposter").style.background=`#1a1012 url(${CONFIG.syn_poster}) center/cover`;
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){
+  document.querySelectorAll(".zones a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id));
+}}),{rootMargin:"-45% 0px -50% 0px"});
+NAV.forEach(([id])=>{const s=document.getElementById(id); if(s) io.observe(s)});
+
+/* ===== Contact chooser ===== */
+const CONTACT={tg:"Fan_taz_er", wa:"77775755013", mail:"krutovscript@gmail.com"};
+const MSG={
+  general:["Hi! I found KRUTOV Production on your website and would like to discuss a project.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу обсудить проект."],
+  ads:["Hi! I'm writing from the KRUTOV Production website. I'd like to order a commercial.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу заказать рекламный ролик."],
+  holiday:["Hi! I'm writing from the KRUTOV Production website. I'd like to order a New Year video greeting for our company.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу заказать новогоднее видеопоздравление для компании."],
+  social:["Hi! I'm writing from the KRUTOV Production website. I'd like to order a video for social media.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу заказать видео для соцсетей."],
+  music:["Hi! I'm writing from the KRUTOV Production website. I'd like to order a music video.","Здравствуйте! Пишу с сайта KRUTOV Production, хочу заказать клип."]
+};
+const cm=document.getElementById("cm"); let cmTopic="general";
+const cmText=()=>{const m=MSG[cmTopic]||MSG.general; return L(m[0],m[1]);};
+function cmShow(step){cm.querySelectorAll(".cmstep").forEach(e=>e.hidden=e.dataset.step!==step);}
+function cmOpen(topic){cmTopic=topic||"general"; cmShow("pick"); cm.querySelector(".cmmsg").textContent=""; cm.querySelector(".cmstatus").textContent=""; lock(); cm.showModal();}
+cm.addEventListener("close",unlock);
+cm.querySelector(".cmx").onclick=()=>cm.close();
+document.querySelectorAll("[data-topic]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault(); cmOpen(a.dataset.topic);}));
+cm.querySelectorAll(".cmopt").forEach(b=>b.onclick=async()=>{
+  const t=cmText(), ch=b.dataset.ch;
+  if(ch==="wa"){ window.open(`https://wa.me/${CONTACT.wa}?text=${encodeURIComponent(t)}`,"_blank","noopener"); cm.close(); return; }
+  if(ch==="tg"){
+    let ok=false; try{ await navigator.clipboard.writeText(t); ok=true; }catch(e){}
+    window.open(`https://t.me/${CONTACT.tg}`,"_blank","noopener"); cm.close();
+    return;
+  }
+  const f=cm.querySelector("form"); f.message.value=t; cmShow("form"); f.name.focus();
+});
+cm.querySelector("form").addEventListener("submit",async e=>{
+  e.preventDefault(); const f=e.target, st=f.querySelector(".cmstatus"), btn=f.querySelector("button[type=submit]");
+  if(f._honey.value) return;
+  btn.disabled=true; st.textContent=L("Sending…","Отправляем…");
+  try{
+    const r=await fetch(`https://formsubmit.co/ajax/${CONTACT.mail}`,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({name:f.name.value,contact:f.contact.value,message:f.message.value,topic:cmTopic,lang:lang,_subject:"Заявка с сайта KRUTOV: "+cmTopic,_template:"table"})});
+    if(!r.ok) throw 0;
+    st.textContent=L("Thank you! We will get back to you soon.","Спасибо! Мы скоро свяжемся с вами."); f.reset();
+  }catch(err){ st.textContent=L("Could not send. Please write to us in Telegram or WhatsApp.","Не получилось отправить. Напишите нам в Telegram или WhatsApp."); }
+  btn.disabled=false;
+});
+
+function setLang(l){
+  lang=l; document.documentElement.lang=l;
+  const d=l==="ru"?RU:EN;
+  document.querySelectorAll("[data-i]").forEach(el=>{ if(d[el.dataset.i]!=null) el.innerHTML=d[el.dataset.i] });
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
+  try{localStorage.setItem("kp_lang",l)}catch(e){}
+  renderNav(); renderZones();
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+setLang(lang);
+</script>
+</body>
+</html>
