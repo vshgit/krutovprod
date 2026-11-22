@@ -186,6 +186,7 @@ dialog h3{color:var(--bone);margin-top:12px;font:500 16px var(--body);text-align
 /* ---- Засветки плёнки (light leaks) ---- */
 main{position:relative;overflow:clip}
 .hero,.chooser,.zone{position:relative}
+.hero{background:linear-gradient(180deg,#24090A 0%,#24090A 55%,rgba(36,9,10,0) 100%)}
 .hero>*,.chooser>*,.zone>*:not(.leak){position:relative;z-index:1}
 .leak{--a:.4;--c:0;position:absolute;z-index:0;pointer-events:none;border-radius:50%;
   background:radial-gradient(closest-side,rgba(255,196,140,calc(var(--a)*.9 + var(--c))),rgba(255,138,61,calc(var(--a)*.8)) 30%,rgba(227,53,44,calc(var(--a)*.5)) 58%,rgba(227,53,44,0) 100%);
@@ -196,9 +197,9 @@ main{position:relative;overflow:clip}
 @keyframes breathe{0%{opacity:.72;transform:translate3d(0,0,0) scale(1)}100%{opacity:1;transform:translate3d(-2%,1.5%,0) scale(1.06)}}
 .lk-hero{--a:.5;--c:.28;top:-220px;right:-22vw;width:min(70vw,900px);height:560px}
 .lk-hero2{--a:.22;bottom:-120px;left:-18vw;width:46vw;height:420px}
-.lk-pick{--a:.34;--c:.12;top:10%;left:-14vw;width:min(34vw,420px);height:640px}
+.lk-pick{--a:.34;--c:.12;top:40%;left:-14vw;width:min(34vw,420px);height:640px}
 .lk-ads{--a:.26;bottom:-160px;left:30%;width:60vw;height:420px}
-.lk-hol{--a:.62;--c:.38;top:-300px;right:-24vw;width:min(80vw,1100px);height:720px}
+.lk-hol{--a:.62;--c:.38;top:-120px;right:-24vw;width:min(80vw,1100px);height:720px}
 .lk-hol2{--a:.2;bottom:-80px;left:-10vw;width:40vw;height:360px}
 .lk-soc{--a:.22;bottom:-220px;left:-16vw;width:56vw;height:520px}
 .lk-mus{--a:.46;--c:.22;top:8%;right:-9vw;width:min(24vw,320px);height:760px}
@@ -207,7 +208,6 @@ main{position:relative;overflow:clip}
 .lk-team{--a:.16;top:20%;left:20%;width:60vw;height:360px}
 .lk-ct{--a:.52;--c:.2;bottom:-280px;left:6%;width:88vw;height:640px}
 /* свет за элементами, как за шоурилом */
-.screen{box-shadow:0 0 160px -8px rgba(227,53,44,.55),0 0 60px -18px rgba(255,138,61,.6)}
 .feature .frame{box-shadow:0 0 120px -18px rgba(227,53,44,.55),0 0 40px -16px rgba(255,138,61,.45)}
 .offer{box-shadow:0 0 110px -36px rgba(255,138,61,.55)}
 .nyvid{box-shadow:0 0 60px -14px rgba(255,138,61,.55)}
@@ -220,9 +220,23 @@ main{position:relative;overflow:clip}
 
 /* большая надпись внизу */
 .wordmark{font:800 clamp(80px,21vw,360px)/.9 var(--display);letter-spacing:-.04em;color:transparent;
-  -webkit-text-stroke:1.5px rgba(239,231,218,.62);white-space:nowrap;padding-left:calc(var(--pad) + .6vw);margin:56px calc(var(--pad)*-1) 0;
+  -webkit-text-stroke:1.5px rgba(239,231,218,.62);white-space:nowrap;padding-left:calc(var(--pad) + .6vw);margin:0 calc(var(--pad)*-1) clamp(28px,4vw,56px);
   user-select:none;text-shadow:0 0 40px rgba(227,53,44,.25)}
 @media (max-width:480px){.wordmark{-webkit-text-stroke-width:1px}}
+
+/* Новый год: заголовки карточек на одном уровне */
+@media (min-width:981px){
+  .offers{grid-template-rows:auto auto 1fr}
+  .offer{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0}
+  .offer>div{align-self:start}
+}
+/* киноплёнка перед блоком Кино */
+.filmstrip{position:relative;z-index:1;margin:0 calc(var(--pad)*-1 - 6vw) clamp(48px,7vw,88px);transform:rotate(-2.2deg);
+  background:#0B0606;padding:10px 0;box-shadow:0 20px 60px -20px rgba(0,0,0,.8);opacity:.82}
+.filmstrip .holes{height:12px;background:repeating-linear-gradient(90deg,#2B1A17 0 18px,transparent 18px 34px);margin:0 0 8px}
+.filmstrip .holes+.frames+.holes{margin:8px 0 0}
+.filmstrip .frames{display:flex;gap:8px;overflow:hidden}
+.filmstrip img{flex:none;width:clamp(150px,17vw,250px);height:clamp(94px,10.6vw,156px);max-width:none;object-fit:cover;filter:saturate(.55) brightness(.62) sepia(.25);border-radius:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 #cm{background:rgba(20,4,5,.88);color:var(--bone)}
 #cm .cmbox{position:relative;width:min(460px,92vw);background:var(--oxblood-2);border:1px solid var(--line);border-radius:20px;padding:26px 22px 22px;touch-action:auto;max-height:90dvh;overflow:auto}
@@ -262,7 +276,7 @@ main{position:relative;overflow:clip}
 
 <main id="top">
 <div class="hero">
-  <i class="leak lk-hero" aria-hidden="true"></i><i class="leak lk-hero2 slow" aria-hidden="true"></i>
+  
   <div>
     <h1 data-i="h1">Cinema-grade AI video for brands</h1>
     <p class="lede" data-i="lede"><strong>The team behind two feature films.</strong> We make commercials, music videos and holiday films with AI, and pick up a real camera when the story needs it.</p>
@@ -291,7 +305,7 @@ main{position:relative;overflow:clip}
 <section class="zone season" id="holiday">
   <i class="leak lk-hol" aria-hidden="true"></i><i class="leak lk-hol2 slow" aria-hidden="true"></i>
   <div class="zhead">
-    <div><h2 data-i="z_hol">New Year</h2><p data-i="hol_p">Two ways to greet your clients and team this year. Both are made in your brand style.</p></div>
+    <div><h2 data-i="z_hol">New Year</h2><p data-i="hol_p">Ways to greet your clients and team this year. Made in your brand style.</p></div>
     <a class="btn solid" href="https://t.me/Fan_taz_er" data-i="hol_cta" data-topic="holiday">Book a New Year project</a>
   </div>
   <div class="offers">
@@ -311,8 +325,8 @@ main{position:relative;overflow:clip}
     </div>
     <div class="offer">
       <div class="demos">
-        <button class="demo" type="button" data-demo="https://vshgit.github.io/snow-globe/"><img src="assets/snow-globe.jpg" alt="" loading="lazy"><b>Snow Globe</b><span data-i="demo1">Shake the phone</span></button>
-        <button class="demo" type="button" data-demo="https://vshgit.github.io/sand/"><img src="assets/sand.jpg" alt="" loading="lazy"><b>Sand</b><span data-i="demo2">Draw with a finger</span></button>
+        <button class="demo" type="button" data-demo="https://vshgit.github.io/snow-globe/"><img src="assets/snow-globe.jpg" alt="" decoding="async"><b>Snow Globe</b><span data-i="demo1">Shake the phone</span></button>
+        <button class="demo" type="button" data-demo="https://vshgit.github.io/sand/"><img src="assets/sand.jpg" alt="" decoding="async"><b>Sand</b><span data-i="demo2">Draw with a finger</span></button>
       </div>
       <h3 data-i="hol2_h">Interactive card</h3>
       <p data-i="hol2_p">A small world clients can touch, right in a phone browser: your office inside a snow globe, your logo in the sand. Tap one to try.</p>
@@ -349,6 +363,9 @@ main{position:relative;overflow:clip}
 
 <section class="zone" id="cinema">
   <i class="leak cold lk-cin" aria-hidden="true"></i><i class="leak lk-cin2 slow" aria-hidden="true"></i>
+  <div class="filmstrip" aria-hidden="true">
+    <div class="holes"></div><div class="frames"><img src="assets/kompromat.jpg" alt="" decoding="async"><img src="assets/vimeo-1180061445.jpg" alt="" decoding="async"><img src="assets/golden-hour.jpg" alt="" decoding="async"><img src="assets/vimeo-1180073199.jpg" alt="" decoding="async"><img src="assets/house-poster.jpg" alt="" decoding="async"><img src="assets/knife.jpg" alt="" decoding="async"><img src="assets/vimeo-1180079665.jpg" alt="" decoding="async"><img src="assets/ora.jpg" alt="" decoding="async"><img src="assets/vimeo-1182213203.jpg" alt="" decoding="async"><img src="assets/syndrome-poster.jpg" alt="" decoding="async"><img src="assets/showreel.jpg" alt="" decoding="async"><img src="assets/ny1.jpg" alt="" decoding="async"></div><div class="holes"></div>
+  </div>
   <div class="zhead">
     <div><h2 data-i="z_cin">Film</h2><p data-i="cin_p">Where we come from: two features in Russian distribution and a handful of shorts.</p></div>
   </div>
@@ -388,6 +405,7 @@ main{position:relative;overflow:clip}
 
 <section class="zone contact" id="contact">
   <i class="leak lk-ct slow" aria-hidden="true"></i>
+  <div class="wordmark" aria-hidden="true">KRUTOV</div>
   <h2 data-i="ct_h">Tell us what you want to film</h2>
   <div class="channels">
     <a href="https://t.me/Fan_taz_er"><span>Telegram</span><b>@Fan_taz_er</b></a>
@@ -397,7 +415,6 @@ main{position:relative;overflow:clip}
     <a href="https://www.youtube.com/@krutovProd"><span>YouTube</span><b data-i="yt">@krutovProd</b></a>
   </div>
   <footer><span data-i="ft_where">Working remotely, worldwide</span><span>© 2026 KRUTOV Production</span></footer>
-  <div class="wordmark" aria-hidden="true">KRUTOV</div>
 </section>
 </main>
 
@@ -488,7 +505,7 @@ const RU = {
   ads_h:"Реклама и AI-фильмы",
   ads_p:"Ролики для брендов от сценария до цветокоррекции, а ещё трейлеры, анимация и сюжетные сцены. С AI это стоит в разы меньше съёмки и готово за недели, а не месяцы.",
   ads_cta:"Заказать рекламу",
-  hol_p:"Два способа поздравить клиентов и команду в этом году. Оба делаем в стиле вашего бренда.",
+  hol_p:"Способы поздравить клиентов и команду в этом году. Делаем в стиле вашего бренда.",
   hol_cta:"Заказать к Новому году",
   ny_play:"Смотреть",
   hol1_h:"Корпоративное видеопоздравление", hol1_p:"Короткий фильм для клиентов, партнёров или команды, как эти два. Мы придумываем идею, вы утверждаете, AI делает так, чтобы это выглядело как кино.",
